@@ -1,0 +1,321 @@
+[
+  {
+    "path": "/content/page",
+    "tag": "Content > Page",
+    "methods": [
+      "get",
+      "post"
+    ]
+  },
+  {
+    "path": "/content/page/{id}",
+    "tag": "Content > Page",
+    "methods": [
+      "get",
+      "put",
+      "delete"
+    ]
+  },
+  {
+    "path": "/content/page/{id}/translate",
+    "tag": "Content > Page",
+    "methods": [
+      "put"
+    ]
+  },
+  {
+    "path": "/content/post/post",
+    "tag": "Content > Post",
+    "methods": [
+      "get",
+      "post"
+    ]
+  },
+  {
+    "path": "/content/post/post/{id}",
+    "tag": "Content > Post",
+    "methods": [
+      "get",
+      "put",
+      "delete"
+    ]
+  },
+  {
+    "path": "/content/post/post/{id}/translate",
+    "tag": "Content > Post",
+    "methods": [
+      "put"
+    ]
+  },
+  {
+    "path": "/content/post/category",
+    "tag": "Content > Post > Category",
+    "methods": [
+      "get",
+      "post"
+    ]
+  },
+  {
+    "path": "/content/post/category/{id}",
+    "tag": "Content > Post > Category",
+    "methods": [
+      "get",
+      "put",
+      "delete"
+    ]
+  },
+  {
+    "path": "/content/post/category/tree",
+    "tag": "Content > Post > Category",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/content/post/category/{id}/children",
+    "tag": "Content > Post > Category",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/content/post/category/{id}/translate",
+    "tag": "Content > Post > Category",
+    "methods": [
+      "put"
+    ]
+  },
+  {
+    "path": "/member/member",
+    "tag": "Member",
+    "methods": [
+      "get",
+      "post"
+    ]
+  },
+  {
+    "path": "/member/member/{id}",
+    "tag": "Member",
+    "methods": [
+      "get",
+      "put",
+      "delete"
+    ]
+  },
+  {
+    "path": "/member/field",
+    "tag": "Member",
+    "methods": [
+      "get",
+      "put"
+    ]
+  },
+   {
+    "path": "/crm/subscriber",
+    "tag": "Member",
+    "methods": [
+      "get",
+      "post"
+    ]
+  },
+ 
+  {
+    "path": "/booking/booking",
+    "tag": "Traveller System > Booking",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/booking/booking/{id}",
+    "tag": "Traveller System > Booking",
+    "methods": [
+      "get"
+    ]
+  },
+ 
+ 
+  {
+    "path": "/content/support/support",
+    "tag": "Content > Support > Support",
+    "methods": [
+      "get",
+      "post"
+    ]
+  },
+  {
+    "path": "/content/support/support/{id}",
+    "tag": "Content > Support > Support",
+    "methods": [
+      "get",
+      "put",
+      "delete"
+    ]
+  },
+  {
+    "path": "/content/support/support/{id}/translate",
+    "tag": "Content > Support > Support",
+    "methods": [
+      "put"
+    ]
+  },
+  {
+    "path": "/content/support/category",
+    "tag": "Content > Support > Category",
+    "methods": [
+      "get",
+      "post"
+    ]
+  },
+  {
+    "path": "/content/support/category/{id}",
+    "tag": "Content > Support > Category",
+    "methods": [
+      "get",
+      "put",
+      "delete"
+    ]
+  },
+  {
+    "path": "/content/support/category/tree",
+    "tag": "Content > Support > Category",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/content/support/category/{id}/children",
+    "tag": "Content > Support > Category",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/content/support/category/{id}/translate",
+    "tag": "Content > Support > Category",
+    "methods": [
+      "put"
+    ]
+  },
+  {
+    "path": "/crm/branch",
+    "tag": "Crm > Branch",
+    "methods": [
+      "get",
+      "post"
+    ]
+  },
+  {
+    "path": "/crm/branch/{id}",
+    "tag": "Crm > Branch",
+    "methods": [
+      "get",
+      "put",
+      "delete"
+    ]
+  },
+ 
+  
+  {
+    "path": "/region/country",
+    "tag": "Regions",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/region/state/get-by-country-id/{id}",
+    "tag": "Regions",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/region/city/get-by-state-id/{id}",
+    "tag": "Regions",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/notification/template",
+    "tag": "Notification",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/notification/template/{id}/mail",
+    "tag": "Notification",
+    "methods": [
+      "get",
+      "put"
+    ]
+  },
+  {
+    "path": "/notification/template/{id}/sms",
+    "tag": "Notification",
+    "methods": [
+      "get",
+      "put"
+    ]
+  },
+  {
+    "path": "/sys/settings/settings/get-by-category/{id}",
+    "tag": "System",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/sys/settings/settings/{id}",
+    "tag": "System",
+    "methods": [
+      "put"
+    ]
+  },
+  {
+    "path": "/sys/settings/category",
+    "tag": "System",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/sys/language",
+    "tag": "System",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/sys/language/{id}/translate",
+    "tag": "System",
+    "methods": [
+      "get",
+      "put"
+    ]
+  },
+  {
+    "path": "/sys/currency",
+    "tag": "System",
+    "methods": [
+      "get"
+    ]
+  },
+  {
+    "path": "/account",
+    "tag": "Account",
+    "methods": [
+      "get",
+      "put"
+    ]
+  },
+  {
+    "path": "/account/password",
+    "tag": "Account",
+    "methods": [
+      "put"
+    ]
+  }
+]

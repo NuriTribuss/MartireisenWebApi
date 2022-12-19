@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-1{fill:#f7a534}.cls-2{clip-path:url(#clip-path)}
+        </style>
+        <clipPath id="clip-path">
+            <path id="Rectangle_82" d="M0 0h24v24H0z" class="cls-1" data-name="Rectangle 82" transform="translate(681 602)"/>
+        </clipPath>
+    </defs>
+    <g id="Mask_Group_18" class="cls-2" data-name="Mask Group 18" transform="translate(-681 -602)">
+        <g id="family" transform="translate(681 602)">
+            <path id="Path_147" d="M7.62 16.466l.352-.4a4.221 4.221 0 0 1 .017-2.566 4.915 4.915 0 0 1-6.122-1.141A4.914 4.914 0 0 0 0 16.219v7.031a.7.7 0 0 0 .7.7h5.8a2.092 2.092 0 0 1-.121-.7v-3.516a4.911 4.911 0 0 1 1.241-3.268z" class="cls-1" data-name="Path 147"/>
+            <circle id="Ellipse_11" cx="3.516" cy="3.516" r="3.516" class="cls-1" data-name="Ellipse 11" transform="translate(2.109 5.672)"/>
+            <path id="Path_148" d="M22.132 12.362a4.914 4.914 0 0 1-6.121 1.138 4.223 4.223 0 0 1 .017 2.566l.352.4a4.911 4.911 0 0 1 1.245 3.269v3.515a2.092 2.092 0 0 1-.121.7H23.3a.7.7 0 0 0 .7-.7v-7.031a4.914 4.914 0 0 0-1.868-3.856z" class="cls-1" data-name="Path 148"/>
+            <circle id="Ellipse_12" cx="3.516" cy="3.516" r="3.516" class="cls-1" data-name="Ellipse 12" transform="translate(14.859 5.672)"/>
+            <path id="Path_149" d="M12 19.031A4.213 4.213 0 0 1 8.67 17.4a3.5 3.5 0 0 0-.889 2.334v3.516a.7.7 0 0 0 .7.7h7.031a.7.7 0 0 0 .7-.7v-3.516a3.5 3.5 0 0 0-.882-2.334A4.213 4.213 0 0 1 12 19.031z" class="cls-1" data-name="Path 149"/>
+            <circle id="Ellipse_13" cx="2.813" cy="2.813" r="2.813" class="cls-1" data-name="Ellipse 13" transform="translate(9.188 12)"/>
+            <path id="Path_150" d="M10 5.718a11.773 11.773 0 0 0 1.632 1.255.7.7 0 0 0 .737 0A11.769 11.769 0 0 0 14 5.718a4.472 4.472 0 0 0 1.749-3.1A2.314 2.314 0 0 0 12 .576a2.314 2.314 0 0 0-3.75 2.043A4.472 4.472 0 0 0 10 5.718z" class="cls-1" data-name="Path 150"/>
+        </g>
+    </g>
+</svg>

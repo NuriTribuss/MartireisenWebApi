@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f76262;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_12" data-name="Rectangle 12" class="cls-1" width="16" height="16" transform="translate(385 712)"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_6" data-name="Mask Group 6" class="cls-2" transform="translate(-385 -712)">
+    <g id="close-circle-fill" transform="translate(385 712)">
+      <path id="Path_16" data-name="Path 16" class="cls-3" d="M0,0H16V16H0Z"/>
+      <path id="Path_17" data-name="Path 17" class="cls-1" d="M8,14.667A6.667,6.667,0,1,1,14.667,8,6.667,6.667,0,0,1,8,14.667ZM8,7.057,6.115,5.171l-.943.943L7.057,8,5.171,9.885l.943.943L8,8.943l1.885,1.886.943-.943L8.943,8l1.886-1.885-.943-.943Z"/>
+    </g>
+  </g>
+</svg>

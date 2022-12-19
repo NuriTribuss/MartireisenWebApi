@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+    <defs>
+        <style>
+            .cls-1{opacity:.4}.cls-2{fill:none}.cls-3{fill:#1c1c1c}
+        </style>
+    </defs>
+    <g id="star-line" class="cls-1">
+        <path id="Path_143" d="M0 0h16v16H0z" class="cls-2" data-name="Path 143"/>
+        <path id="Path_144" d="M8 11.715l-4.581 2.493L4.442 9.2.587 5.736l5.214-.6L8 .5l2.2 4.635 5.214.6L11.558 9.2l1.023 5.006zm0-1.447l2.759 1.5-.616-3.014 2.321-2.087-3.14-.361L8 3.515 6.676 6.306l-3.139.361 2.321 2.088-.616 3.014z" class="cls-3" data-name="Path 144"/>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+    <defs>
+        <style>
+            .cls-1{fill:#f7a534}.cls-2{clip-path:url(#clip-path)}.cls-3{fill:none}
+        </style>
+        <clipPath id="clip-path">
+            <path id="Rectangle_26" d="M0 0h16v16H0z" class="cls-1" data-name="Rectangle 26" transform="translate(714 331)"/>
+        </clipPath>
+    </defs>
+    <g id="Mask_Group_8" class="cls-2" data-name="Mask Group 8" transform="translate(-714 -331)">
+        <g id="hotel-line" transform="translate(714 331)">
+            <path id="Path_20" d="M0 0h16v16H0z" class="cls-3" data-name="Path 20"/>
+            <path id="Path_21" d="M14.667 14H1.333v-1.333H2v-10A.667.667 0 0 1 2.667 2H12a.667.667 0 0 1 .667.667V6H14v6.667h.667zm-3.333-1.333h1.333V7.333h-4v5.333H10v-4h1.333zm0-6.667V3.333h-8v9.333h4V6zM4.667 7.333H6v1.334H4.667zm0 2.667H6v1.333H4.667zm0-5.333H6V6H4.667z" class="cls-1" data-name="Path 21"/>
+        </g>
+    </g>
+</svg>

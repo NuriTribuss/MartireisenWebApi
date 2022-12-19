@@ -1,0 +1,83 @@
+{
+    "type": "table",
+    "name": "services",
+    "columns": [
+        {
+            "name": "id",
+            "type": "int",
+            "length": "11",
+            "comment": ""
+        },
+        {
+            "name": "code",
+            "type": "varchar",
+            "length": "11",
+            "comment": "",
+            "null": true
+        },
+        {
+            "name": "title",
+            "type": "varchar",
+            "length": "155",
+            "comment": "",
+            "null": true
+        },
+        {
+            "name": "description",
+            "type": "text",
+            "length": "",
+            "comment": "",
+            "null": true
+        },
+        {
+            "name": "content",
+            "type": "text",
+            "length": "",
+            "comment": "",
+            "null": false
+        },
+        {
+            "name": "image",
+            "type": "varchar",
+            "length": "255",
+            "comment": "",
+            "null": true
+        },
+        {
+            "name": "seo_url",
+            "type": "varchar",
+            "length": "200",
+            "comment": "",
+            "null": true
+        },
+        {
+            "name": "icon",
+            "type": "varchar",
+            "length": "100",
+            "comment": "",
+            "null": false
+        },
+        {
+            "name": "is_active",
+            "type": "tinyint",
+            "length": "1",
+            "comment": "",
+            "default": "1",
+            "null": true
+        },
+        {
+            "name": "created_at",
+            "type": "int",
+            "length": "11",
+            "comment": "",
+            "null": true
+        },
+        {
+            "name": "updated_at",
+            "type": "int",
+            "length": "11",
+            "comment": "",
+            "null": true
+        }
+    ]
+}

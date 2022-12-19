@@ -1,0 +1,238 @@
+[
+    {
+        "code": "bea",
+        "name": "Direkt am Strand"
+    },
+    {
+        "code": "ben",
+        "name": "Strandnah"
+    },
+    {
+        "code": "chf",
+        "name": "Kinderfreundlich"
+    },
+    {
+        "code": "ecc",
+        "name": "Kinderbetreuung"
+    },
+    {
+        "code": "eec",
+        "name": "Unterhaltungsprogramm (Kinder)"
+    },
+    {
+        "code": "emd",
+        "name": "Mini-Disco"
+    },
+    {
+        "code": "emc",
+        "name": "Miniclub"
+    },
+    {
+        "code": "fbs",
+        "name": "Babysitter"
+    },
+    {
+        "code": "fcp",
+        "name": "Kinderpool"
+    },
+    {
+        "code": "fpg",
+        "name": "Spielplatz"
+    },
+    {
+        "code": "fpr",
+        "name": "Spielzimmer"
+    },
+    {
+        "code": "mcm",
+        "name": "Kindermenüs"
+    },
+    {
+        "code": "rcb",
+        "name": "Kinderbett"
+    },
+    {
+        "code": "hca",
+        "name": "Kinderhochstuhl"
+    },
+    {
+        "code": "ani",
+        "name": "Animation"
+    },
+    {
+        "code": "clb",
+        "name": "Club"
+    },
+    {
+        "code": "spt",
+        "name": "Sport"
+    },
+    {
+        "code": "sws",
+        "name": "Wassersport"
+    },
+    {
+        "code": "sbs",
+        "name": "Ballsport"
+    },
+    {
+        "code": "shb",
+        "name": "Hiking / Biking"
+    },
+    {
+        "code": "sgl",
+        "name": "Golf"
+    },
+    {
+        "code": "srd",
+        "name": "Reiten"
+    },
+    {
+        "code": "sae",
+        "name": "Aerobic"
+    },
+    {
+        "code": "sfr",
+        "name": "Fitnessraum"
+    },
+    {
+        "code": "stn",
+        "name": "Tennis"
+    },
+    {
+        "code": "sdv",
+        "name": "Tauchen"
+    },
+    {
+        "code": "sth",
+        "name": "Sonstiges"
+    },
+    {
+        "code": "wel",
+        "name": "Wellness"
+    },
+    {
+        "code": "wms",
+        "name": "Massage"
+    },
+    {
+        "code": "way",
+        "name": "Ayurveda"
+    },
+    {
+        "code": "wth",
+        "name": "Thalasso"
+    },
+    {
+        "code": "wcu",
+        "name": "Kuranwendung"
+    },
+    {
+        "code": "wsn",
+        "name": "Dampfbad / Sauna"
+    },
+    {
+        "code": "wdt",
+        "name": "Diät"
+    },
+    {
+        "code": "waa",
+        "name": "Anti Aging"
+    },
+    {
+        "code": "wbf",
+        "name": "Beauty Farm"
+    },
+    {
+        "code": "wac",
+        "name": "Aktiv sein"
+    },
+    {
+        "code": "wap",
+        "name": "Akupunktur"
+    },
+    {
+        "code": "pol",
+        "name": "Pool"
+    },
+    {
+        "code": "ipl",
+        "name": "Hallenbad"
+    },
+    {
+        "code": "fin",
+        "name": "Internetzugang im Haus"
+    },
+    {
+        "code": "fwi",
+        "name": "WLAN"
+    },
+    {
+        "code": "fwc",
+        "name": "behindertengerecht"
+    },
+    {
+        "code": "lcs",
+        "name": "zentrale Lage"
+    },
+    {
+        "code": "rbe",
+        "name": "getrennte Schlafzimmer"
+    },
+    {
+        "code": "rin",
+        "name": "Internetzugang im Zimmer"
+    },
+    {
+        "code": "rsm",
+        "name": "Raucherzimmer"
+    },
+    {
+        "code": "rse",
+        "name": "Meerblick"
+    },
+    {
+        "code": "krz",
+        "name": "Kreuzfahrten"
+    },
+    {
+        "code": "bhn",
+        "name": "Bahnreisen"
+    },
+    {
+        "code": "bus",
+        "name": "Busreisen"
+    },
+    {
+        "code": "rdr",
+        "name": "Rundreisen"
+    },
+    {
+        "code": "cit",
+        "name": "Städtereisen"
+    },
+    {
+        "code": "kur",
+        "name": "Kurreisen"
+    },
+    {
+        "code": "ski",
+        "name": "Skireisen"
+    },
+    {
+        "code": "cmp",
+        "name": "Camping"
+    },
+    {
+        "code": "few",
+        "name": "Ferienwohnungen"
+    },
+    {
+        "code": "ado",
+        "name": "Adults Only"
+    },
+    {
+        "code": "wsl",
+        "name": "Wasserrutsche"
+    }
+]

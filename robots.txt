@@ -1,0 +1,12 @@
+User-agent: *
+
+Sitemap: https://www.martireisen.at/sitemap.xml
+
+
+Disallow: /admin/*
+Disallow: /my/*
+Disallow: /search/*
+Disallow: /service/*
+Allow : /service/css/*
+Allow : /service/language/*
+Allow : /service/block/*

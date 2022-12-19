@@ -1,0 +1,450 @@
+[
+  {
+    "bitpos": "0",
+    "decvalue": "1",
+    "crit": "ST03-T-HACP",
+    "de-descr": "für Behinderte",
+    "de-cat": "1"
+  },
+  {
+    "bitpos": "1",
+    "decvalue": "2",
+    "crit": "ST03-T-ACTO",
+    "de-descr": "für Sport- und Aktivurlauber",
+    "de-cat": "1"
+  },
+  {
+    "bitpos": "2",
+    "decvalue": "4",
+    "crit": "ST03-T-ADON",
+    "de-descr": "nur für Erwachsene",
+    "de-cat": "1"
+  },
+  {
+    "bitpos": "3",
+    "decvalue": "8",
+    "crit": "ST03-T-FAMI",
+    "de-descr": "für Familien",
+    "de-cat": "1"
+  },
+  {
+    "bitpos": "4",
+    "decvalue": "16",
+    "crit": "ST03-P-QUIT",
+    "de-descr": "ruhig",
+    "de-cat": "2"
+  },
+  {
+    "bitpos": "5",
+    "decvalue": "32",
+    "crit": "ST03-P-CENT",
+    "de-descr": "zentral",
+    "de-cat": "2"
+  },
+  {
+    "bitpos": "6",
+    "decvalue": "64",
+    "crit": "ST03-P-BDIR",
+    "de-descr": "Strand direkt",
+    "de-cat": "2"
+  },
+  {
+    "bitpos": "7",
+    "decvalue": "128",
+    "crit": "ST03-B-BSND",
+    "de-descr": "Sandstrand",
+    "de-cat": "3"
+  },
+  {
+    "bitpos": "8",
+    "decvalue": "256",
+    "crit": "ST03-B-INPO",
+    "de-descr": "Hallenbad",
+    "de-cat": "3"
+  },
+  {
+    "bitpos": "9",
+    "decvalue": "512",
+    "crit": "ST03-B-POOL",
+    "de-descr": "Pool",
+    "de-cat": "3"
+  },
+  {
+    "bitpos": "10",
+    "decvalue": "1024",
+    "crit": "ST03-B-WASL",
+    "de-descr": "Wasserrutsche",
+    "de-cat": "3"
+  },
+  {
+    "bitpos": "11",
+    "decvalue": "2048",
+    "crit": "ST03-C-CHFR",
+    "de-descr": "kinderfreundlich",
+    "de-cat": "4"
+  },
+  {
+    "bitpos": "12",
+    "decvalue": "4096",
+    "crit": "ST03-C-KICB",
+    "de-descr": "Kinderclub - Miniclub",
+    "de-cat": "4"
+  },
+  {
+    "bitpos": "13",
+    "decvalue": "8192",
+    "crit": "ST03-C-CHPL",
+    "de-descr": "Kinderspielplatz",
+    "de-cat": "4"
+  },
+  {
+    "bitpos": "14",
+    "decvalue": "16384",
+    "crit": "ST03-C-CHEN",
+    "de-descr": "Kinderanimation",
+    "de-cat": "4"
+  },
+  {
+    "bitpos": "15",
+    "decvalue": "32768",
+    "crit": "ST03-C-CHIL",
+    "de-descr": "Kinderbetreuung",
+    "de-cat": "4"
+  },
+  {
+    "bitpos": "16",
+    "decvalue": "65536",
+    "crit": "ST03-C-CHPL",
+    "de-descr": "Kinderpool",
+    "de-cat": "4"
+  },
+  {
+    "bitpos": "17",
+    "decvalue": "131072",
+    "crit": "ST03-C-BASE",
+    "de-descr": "Babysitterservice",
+    "de-cat": "4"
+  },
+  {
+    "bitpos": "18",
+    "decvalue": "262144",
+    "crit": "ST03-E-MSEN",
+    "de-descr": "vielseitiges Unterhaltungtsprogramm",
+    "de-cat": "5"
+  },
+  {
+    "bitpos": "19",
+    "decvalue": "524288",
+    "crit": "ST03-E-ADEN",
+    "de-descr": "Erwachsenenanimation",
+    "de-cat": "5"
+  },
+  {
+    "bitpos": "20",
+    "decvalue": "1048576",
+    "crit": "ST03-W-MSWE",
+    "de-descr": "vielseitiges Wellnessangebot",
+    "de-cat": "6"
+  },
+  {
+    "bitpos": "21",
+    "decvalue": "2097152",
+    "crit": "ST03-W-MASS",
+    "de-descr": "Massage",
+    "de-cat": "6"
+  },
+  {
+    "bitpos": "22",
+    "decvalue": "4194304",
+    "crit": "ST03-W-SAUN",
+    "de-descr": "Sauna",
+    "de-cat": "6"
+  },
+  {
+    "bitpos": "23",
+    "decvalue": "8388608",
+    "crit": "ST03-W-SOLA",
+    "de-descr": "Solarium",
+    "de-cat": "6"
+  },
+  {
+    "bitpos": "24",
+    "decvalue": "16777216",
+    "crit": "ST03-W-SPAA",
+    "de-descr": "Spa-Bereich",
+    "de-cat": "6"
+  },
+  {
+    "bitpos": "25",
+    "decvalue": "33554432",
+    "crit": "ST03-S-MSSP",
+    "de-descr": "vielseitiges Sportangebot",
+    "de-cat": "7"
+  },
+  {
+    "bitpos": "26",
+    "decvalue": "67108864",
+    "crit": "ST03-S-TENN",
+    "de-descr": "Tennis",
+    "de-cat": "7"
+  },
+  {
+    "bitpos": "27",
+    "decvalue": "134217728",
+    "crit": "ST03-S-BIKE",
+    "de-descr": "Rad/Mountainbike",
+    "de-cat": "7"
+  },
+  {
+    "bitpos": "28",
+    "decvalue": "268435456",
+    "crit": "ST03-S-HORI",
+    "de-descr": "Reiten",
+    "de-cat": "7"
+  },
+  {
+    "bitpos": "29",
+    "decvalue": "536870912",
+    "crit": "ST03-S-GOLF",
+    "de-descr": "Golf",
+    "de-cat": "7"
+  },
+  {
+    "bitpos": "30",
+    "decvalue": "1073741824",
+    "crit": "ST03-S-FITN",
+    "de-descr": "Fitness",
+    "de-cat": "7"
+  },
+  {
+    "bitpos": "31",
+    "decvalue": "2147483648",
+    "crit": "ST03-A-MSWS",
+    "de-descr": "vielseitiges Wassersportangebot",
+    "de-cat": "8"
+  },
+  {
+    "bitpos": "32",
+    "decvalue": "4294967296",
+    "crit": "ST03-A-WASK",
+    "de-descr": "Wasserski",
+    "de-cat": "8"
+  },
+  {
+    "bitpos": "33",
+    "decvalue": "8589934592",
+    "crit": "ST03-A-WIND",
+    "de-descr": "Windsurfen",
+    "de-cat": "8"
+  },
+  {
+    "bitpos": "34",
+    "decvalue": "17179869184",
+    "crit": "ST03-A-DIVI",
+    "de-descr": "Tauchen",
+    "de-cat": "8"
+  },
+  {
+    "bitpos": "35",
+    "decvalue": "34359738368",
+    "crit": "ST03-PEAL",
+    "de-descr": "Haustiere erlaubt",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "36",
+    "decvalue": "68719476736",
+    "crit": "ST03-WLAN",
+    "de-descr": "WLAN vorhanden",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "37",
+    "decvalue": "137438953472",
+    "crit": "ST03-INTE",
+    "de-descr": "Internetzugang",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "38",
+    "decvalue": "274877906944",
+    "crit": "ST03-HOSA",
+    "de-descr": "Wäscherei",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "39",
+    "decvalue": "549755813888",
+    "crit": "ST03-LASE",
+    "de-descr": "Klein/familiär",
+    "de-cat": "10"
+  },
+  {
+    "bitpos": "40",
+    "decvalue": "1099511627776",
+    "crit": "ST03-SMHO",
+    "de-descr": "Klimaanlage (Hotel)",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "41",
+    "decvalue": "2199023255552",
+    "crit": "ST03-ROSE",
+    "de-descr": "Zimmerservice",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "42",
+    "decvalue": "4398046511104",
+    "crit": "ST03-G-BIHI",
+    "de-descr": "Fahrradverleih",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "43",
+    "decvalue": "8796093022208",
+    "crit": "ST03-MECA",
+    "de-descr": "Medizinische Betreuung",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "44",
+    "decvalue": "17592186044416",
+    "crit": "ST03-E-DISC",
+    "de-descr": "Disco",
+    "de-cat": "5"
+  },
+  {
+    "bitpos": "45",
+    "decvalue": "35184372088832",
+    "crit": "ST02-R-CLCX",
+    "de-descr": "Club Resort",
+    "de-cat": "10"
+  },
+  {
+    "bitpos": "46",
+    "decvalue": "70368744177664",
+    "crit": "ST02-H-SKHO",
+    "de-descr": "Skihotel",
+    "de-cat": "10"
+  },
+  {
+    "bitpos": "47",
+    "decvalue": "140737488355328",
+    "crit": "ST02-H-GOLF",
+    "de-descr": "Golfhotel",
+    "de-cat": "10"
+  },
+  {
+    "bitpos": "48",
+    "decvalue": "281474976710656",
+    "crit": "ST03-HOMO",
+    "de-descr": "Gayhotel",
+    "de-cat": "10"
+  },
+  {
+    "bitpos": "49",
+    "decvalue": "562949953421312",
+    "crit": "ST03-S-BEVO",
+    "de-descr": "Volleyball",
+    "de-cat": "7"
+  },
+  {
+    "bitpos": "50",
+    "decvalue": "1125899906842620",
+    "crit": "ST03-A-SAIL",
+    "de-descr": "Segeln",
+    "de-cat": "8"
+  },
+  {
+    "bitpos": "51",
+    "decvalue": "2251799813685250",
+    "crit": "ST03-A-KAYA",
+    "de-descr": "Kajak",
+    "de-cat": "8"
+  },
+  {
+    "bitpos": "52",
+    "decvalue": "4503599627370500",
+    "crit": "GT03-S-SKII",
+    "de-descr": "Ski",
+    "de-cat": "11"
+  },
+  {
+    "bitpos": "53",
+    "decvalue": "9007199254740990",
+    "crit": "ST03-A-KITE",
+    "de-descr": "Kitesurfen",
+    "de-cat": "8"
+  },
+  {
+    "bitpos": "54",
+    "decvalue": "18014398509482000",
+    "crit": "ST03-C-ENCH",
+    "de-descr": "Unterhaltung für Kinder",
+    "de-cat": "5"
+  },
+  {
+    "bitpos": "55",
+    "decvalue": "36028797018964000",
+    "crit": "ST03-E-ENAD",
+    "de-descr": "Unterhaltung für Erwachsene",
+    "de-cat": "5"
+  },
+  {
+    "bitpos": "56",
+    "decvalue": "72057594037927900",
+    "crit": "ST03-C-DISC",
+    "de-descr": "Mini-Disco",
+    "de-cat": "5"
+  },
+  {
+    "bitpos": "57",
+    "decvalue": "144115188075856000",
+    "crit": "ST03-G-DICU",
+    "de-descr": "Diätische Küche",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "58",
+    "decvalue": "288230376151712000",
+    "crit": "ST03-G-VEGE",
+    "de-descr": "Vegetarische Gerichte",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "59",
+    "decvalue": "576460752303423000",
+    "crit": "ST03-W-STBA",
+    "de-descr": "Dampfbad",
+    "de-cat": "6"
+  },
+  {
+    "bitpos": "60",
+    "decvalue": "1152921504606850000",
+    "crit": "ST03-W-CURE",
+    "de-descr": "Kuren und Kurhotel",
+    "de-cat": "6"
+  },
+  {
+    "bitpos": "61",
+    "decvalue": "2305843009213690000",
+    "crit": "ST05-R-AICO",
+    "de-descr": "Klimanlage (Zimmer)",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "62",
+    "decvalue": "4611686018427390000",
+    "crit": "ST05-R-WLAN",
+    "de-descr": "WiFi (Zimmer)",
+    "de-cat": "9"
+  },
+  {
+    "bitpos": "63",
+    "decvalue": "9223372036854780000",
+    "crit": "ST05-R-SUWH",
+    "de-descr": "fürignet",
+    "de-cat": "9"
+  }
+]

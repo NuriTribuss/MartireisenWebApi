@@ -1,0 +1,43 @@
+{
+    "name": "Marti Reisen",
+    "description": "Marti Reisen",
+    "version" : "1.0.0-dev",
+    "config": {
+        "platform": {
+            "php": "7.2.11"
+        }
+    },
+    "type": "project",
+    "authors": [
+        {
+            "name": "Mustafa ERÇEL",
+            "email": "mercelnet@gmail.com",
+            "homepage": "https://martireisen.at",
+            "role": "Software Engineer"
+        }
+    ],
+    "require": {
+        "illuminate/database": "5.1.8",
+        "swiftmailer/swiftmailer": "^6.0", 
+        "guzzlehttp/guzzle": "^6.3",
+        "sofort/sofortlib-php": "3.*",
+        "elasticsearch/elasticsearch": "^7.0",
+        "twig/twig": "^3.0",
+        "firebase/php-jwt": "^5.0"
+
+    },
+    "autoload": 
+        {
+            "psr-4": 
+            {
+                "Application\\"     : "application/Controllers",
+                "Model\\"           : "application/Models",
+                "Providers\\"       : "application/Providers",
+                "Core\\"            : "system/Core",
+                "Drivers \\"        : "system/Drivers" ,
+                "Helper\\"          : "system/Helper",
+                "System\\"          : "system/",
+                "Exceptions\\"      : "system/Exceptions"
+            }
+        }
+}
