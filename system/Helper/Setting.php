@@ -35,6 +35,7 @@ class Setting {
             $setting    = file_get_contents($file);
             
             if($setting === false){
+                $domain = str_replace(["webapi.","webapitest."],"",$domain);
 
                 $setting = Settings::where(['key' => $key , 'domain' => $domain])->first()->toArray();
                 if(isset($setting['id'])){
