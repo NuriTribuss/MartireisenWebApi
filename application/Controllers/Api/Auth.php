@@ -46,7 +46,7 @@ class Auth extends Webservice{
         $access->save();*/
      
         $find = $find->toArray(); 
-        $this->response->setStatus(true)->setSession($find)->setData(['token' => $this->setAuthorization($find) , 'session' => $find])->out();
+        $this->response->setStatus(true)->setSession($find)->setData(['token' => $this->setAuthorization($find), 'session' => $find])->out();
     }
     
     public function user() {

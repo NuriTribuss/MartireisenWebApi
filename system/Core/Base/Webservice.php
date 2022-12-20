@@ -54,7 +54,7 @@ class Webservice {
         
         $this->setSortParams();
         $this->setLimitParams();
-     //   $this->setFilterParams();
+        $this->setFilterParams();
 
     }
 
@@ -110,7 +110,8 @@ class Webservice {
     }
 
     public function build($model) {
-        
+
+
         if(count($this->whereParams) > 0 ){
             foreach($this->whereParams as $param){
                $model =  $model->where($param['column'],$param['seperator'],$param['value']);
@@ -180,9 +181,12 @@ class Webservice {
          
     }
 
+    //Converts the parameters from the url to an array and
+    //adds it to the database query as a where parameter ?active=1&name=renas => ['active' => 1 , 'name' => 'renas']
     public function setFilterParams() {
 
         $params = \Helper\Input::getAll();
+
         foreach($params as $key => $p){
             if(in_array($key, $this->allocated)){
                 continue;
