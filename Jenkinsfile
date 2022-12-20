@@ -61,7 +61,7 @@ pipeline{
                 stage("DEPLOY"){
                     steps{
                         script{
-                          sh"ls"
+                            sshRemove remote: "Plesk", path: "/var/www/vhosts/webapitest.martireisen.at/"
                             sshPublisher(publishers: [sshPublisherDesc(configName: 'Plesk', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/var/www/vhosts/webapitest.martireisen.at/', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*/**')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
                             // BUILT_TAG=sh(script:"docker images --quiet", returnStdout: true).trim()
                             // sh "docker logout"
