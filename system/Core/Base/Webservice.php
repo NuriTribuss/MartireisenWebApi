@@ -20,7 +20,7 @@ class Webservice {
     protected $jwtData;
     protected $session;
 
-    protected $allocated   = ['params','sort','limit','offset','domain','page'];
+    protected $allocated   = ['params','sort','limit','offset','domain','page','ssr'];
     protected $sortParams  = [];
     protected $whereParams = [];
     protected $limit       = 10;

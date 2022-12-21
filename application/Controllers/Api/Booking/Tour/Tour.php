@@ -3,9 +3,11 @@
 namespace Application\Api\Booking\Tour;
 
 use Core\Base\Webservice;
+use Helper\Input;
 use Model\Tour\Tour as Model;
 use Model\Tour\Type;
 use Model\Tour\Age;
+use Model\TourView;
 use Model\Link\Link;
 use Model\Localization\Language;
 use Model\Tour\TourTranslation;
@@ -22,7 +24,7 @@ class Tour extends Webservice {
     }
     
     public function get() {
-        
+
          try{
              
             $model = $this->build(Model::whereRaw('1 = 1'));
@@ -31,16 +33,21 @@ class Tour extends Webservice {
                 'page'  => \Helper\Input::get('page',1)
             ];
             
-            if (count($this->sortParams) == 0) {
-              //  $model->orderBy('start_date', 'desc');
-            }
-            
             $skip   = $pagination['page'] == 1 ? 0 : (($pagination['page'] -1) * $this->limit);
             $data   = $model->with(['translate' => function($q) {
                 $q->where('language',$this->language);
             }])->skip($skip)->take($this->limit)->get();
-            
-            $this->response->setStatus(true)->setMeta($this->paginate($pagination))->setData($data->toArray())->out();
+
+            $tours = [];
+            if(Input::get('ssr') != 1) {
+                $tours = $data->toArray();
+            }else{
+                $tourView = new TourView();
+                foreach($data->toArray() as $tour){
+                    $tours[] = $tourView->get($tour['id']);
+                }
+            }
+            $this->response->setStatus(true)->setMeta($this->paginate($pagination))->setData($tours)->out();
 
         }catch(\Exception $e){
             $this->response->setMessage($e->getMessage())->http(400);
