@@ -3,12 +3,12 @@ def remote = [:]
 remote.name = "digiturk"
 remote.host = "85.214.111.225"
 remote.allowAnyHosts = true
-withCredentials([sshUserPrivateKey(credentialsId: 'Plesk', keyFileVariable: 'identity', passphraseVariable: 'password', usernameVariable: 'userName')]) {
-  remote.user = userName
-  remote.identityFile = identity
-  remote.password=password
-}
 
+node{  withCredentials([sshUserPrivateKey(credentialsId: 'Plesk', keyFileVariable: 'identity', passphraseVariable: 'password', usernameVariable: 'userName')]) {
+    remote.user = userName
+    remote.identityFile = identity
+    remote.password=password
+  }}
 pipeline{
     agent any
 
@@ -22,7 +22,7 @@ pipeline{
     environment{
         NODE_ENV="production"
     }
-
+  
     stages{
         // stage("SETUP"){
         //     steps{
