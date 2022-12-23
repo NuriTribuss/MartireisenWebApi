@@ -1,14 +1,6 @@
 #!groovy
-def remote = [:]
-remote.name = "digiturk"
-remote.host = "85.214.111.225"
-remote.allowAnyHosts = true
 
-node{  withCredentials([sshUserPrivateKey(credentialsId: 'Plesk', keyFileVariable: 'identity', passphraseVariable: 'password', usernameVariable: 'userName')]) {
-    remote.user = userName
-    remote.identityFile = identity
-    remote.password=password
-  }}
+
 pipeline{
     agent any
 
@@ -21,6 +13,7 @@ pipeline{
 
     environment{
         NODE_ENV="production"
+        
     }
   
     stages{
@@ -69,7 +62,18 @@ pipeline{
 
                 stage("DEPLOY"){
                     steps{
-                        sshRemove remote: remote, path: '/var/www/vhosts/webapitest.martireisen.at/'      
+                      // TODO: 
+                        // def remote = [:]
+                        // remote.name = "digiturk"
+                        // remote.host = "85.214.111.225"
+                        // remote.allowAnyHosts = true
+                        // withCredentials([sshUserPrivateKey(credentialsId: 'Plesk', keyFileVariable: 'identity', passphraseVariable: 'password', usernameVariable: 'userName')]) {
+                        //   remote.user = userName
+                        //   remote.identityFile = identity
+                        //   remote.password=password
+                          
+                        // }
+                        // sshRemove remote: remote, path: '/var/www/vhosts/webapitest.martireisen.at/' 
                         script{
                             sshPublisher(publishers: [sshPublisherDesc(configName: 'Plesk', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/var/www/vhosts/webapitest.martireisen.at/', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*/**')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
                             // BUILT_TAG=sh(script:"docker images --quiet", returnStdout: true).trim()
