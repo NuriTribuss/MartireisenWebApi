@@ -3,6 +3,7 @@
 namespace Core\Base;
 
 use \Firebase\JWT\JWT;
+use Helper\Input;
 use \Helper\Validation;
 use Model\Sys\User\Permission;
 
@@ -20,7 +21,7 @@ class Webservice {
     protected $jwtData;
     protected $session;
 
-    protected $allocated   = ['params','sort','limit','offset','domain','page','ssr'];
+    protected $allocated   = ['params','sort','limit','offset','domain','page','ssr','hl'];
     protected $sortParams  = [];
     protected $whereParams = [];
     protected $limit       = 10;
@@ -29,7 +30,7 @@ class Webservice {
 
     public function __construct($auth = true) {
         
-        $this->language   = 'de'; //\Helper\Setting::get('sys_language');
+        $this->language   = Input::get('hl','de'); //\Helper\Setting::get('sys_language');
         $this->response   = new \Core\Http\Response();
         $this->validation = new Validation();
         
