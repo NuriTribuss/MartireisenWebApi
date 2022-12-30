@@ -120,12 +120,12 @@ class Customer extends Message{
         $send = $this->send($message);
         
         if($booking['source'] == 'Tour'){
-           // $message['mail'] = ['kb@martireisen.at','deger@tribus-business.at','mercelnet@gmail.com'];
+           $message['mail'] = ['kb@martireisen.at','osman@martireisen.at','mercelnet@gmail.com'];
         }else{
-           // $message['mail'] = ['web@tribus-business.at','mercelnet@gmail.com'];
+           $message['mail'] = ['web@tribus-business.at','mercelnet@gmail.com'];
         }
         
-       // $this->send($message);
+        $this->send($message);
         
         return $send;
     }
