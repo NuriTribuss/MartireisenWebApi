@@ -76,6 +76,7 @@ class TourView {
         foreach($tour['periods'] as &$period){
             $period['stations'] = Station::where('period_id',$period['id'])->orderBy('sort_number', 'asc')->get()->toArray();
             $period['start_date_pretty'] = date('d.m.Y',$period['start_date']);
+            $period['end_date_pretty'] = date('d.m.Y',$period['end_date']);
         }
         
         $tour['period']     = $this->getPeriod($tour['periods']);
