@@ -530,7 +530,7 @@ class Booking extends Service{
     
     public function process() {
         
-        $transaction = \Core\Session\Session::get('payment_transaction');
+        $transaction = Input::get('ref');
         $record      = BookingObj::where('transaction_id',$transaction)->first();
         
         if($record != NULL && $record->payment_method > 1){

@@ -15,7 +15,7 @@ class Sofort {
         $this->configKey = \Helper\Config::get('USER_ID').':'.\Helper\Config::get('PROJECT_ID').':'.\Helper\Config::get('API_KEY');
     }
     
-    public function checkout($amount,$bookingCode) {
+    public function checkout($amount,$bookingCode,$ref) {
         
         $return = array(
             'status' => false,
@@ -23,14 +23,14 @@ class Sofort {
             'url'    => ''
         );
         
-        $url = str_replace('http://','https://',SITE_URL);
+        $url = 'https://www.martireisen.at';
 
         $Sofortueberweisung = new Sofortueberweisung($this->configKey);
         $Sofortueberweisung->setAmount($amount);
         $Sofortueberweisung->setCurrencyCode('EUR');
         $Sofortueberweisung->setReason($bookingCode, 'Verwendungszweck');
         $Sofortueberweisung->setSuccessUrl($url.'/service/booking/process', true); 
-        $Sofortueberweisung->setAbortUrl($url.'/booking/failure');
+        $Sofortueberweisung->setAbortUrl($url.'/booking/checkout?code='.$ref);
         
         $Sofortueberweisung->sendRequest();
         

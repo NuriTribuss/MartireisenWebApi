@@ -342,10 +342,8 @@ class Tour extends Webservice {
             $uploader->file_new_name_body = 'image_main';
             $uploader->image_convert = 'jpg';
             $uploader->file_overwrite = true;
-          
             $process = $uploader->upload('image/tours/'.$id);
             if($process !== false){
-                
                 $tour = Model::find($id);
                 $tour->image = $process;
                 $tour->save();

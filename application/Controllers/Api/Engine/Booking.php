@@ -96,7 +96,7 @@ class Booking extends Service {
         if($data['payment']['method'] == 2){
             
             $sofort = new \Helper\Payment\Sofort();
-            $return = $sofort->checkout(floatval($booking->amount),$booking->code);
+            $return = $sofort->checkout(floatval($booking->amount),$booking->code,$booking->ref);
             if($return['status'] == false) {
                 $booking->transaction_error = $return['data'];
                 $booking->save();
@@ -110,7 +110,7 @@ class Booking extends Service {
         }else if($data['payment']['method'] == 3){
             
             $saferpay = new \Helper\Payment\Saferpay();
-            $return = $saferpay->checkout(floatval($booking->amount*100),$booking->code);
+            $return = $saferpay->checkout(floatval($booking->amount*100),$booking->code , $booking->ref);
 
             if($return['status'] == false) {
                 $booking->transaction_error = $return['data'];

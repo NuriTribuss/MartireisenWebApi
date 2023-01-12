@@ -32,7 +32,7 @@ class Saferpay {
         $this->customerId = $this->isTest ? $this->testCustomer  : \Helper\Config::get('SAFERPAY_CUSTOMER');
     }
     
-    public function checkout($amount,$booking) {
+    public function checkout($amount,$booking,$ref) {
         
         $return = array(
             'status' => false,
@@ -43,7 +43,7 @@ class Saferpay {
         $payload = array(
             'RequestHeader' => $this->getHeader(),
             'TerminalId'    => $this->TerminalId,
-            'ReturnUrls'    => $this->getCallbackUrl(),
+            'ReturnUrls'    => $this->getCallbackUrl($ref),
             'Payment' => array(
                 'Amount' => array(
                     'Value' => floatVal($amount),
@@ -143,13 +143,13 @@ class Saferpay {
         return $arr;
     }
     
-    public function getCallbackUrl() {
+    public function getCallbackUrl($ref) {
         
-        $url = str_replace('http://','https://',SITE_URL);
+        $url = 'https://www.martireisen.at';
 
         $arr = array(
-            "Success" =>  $url.'/service/booking/process',
-            "Fail"    =>  $url.'/booking/failure'
+            "Success" =>  'https://webapi.martireisen.at/service/booking/process?ref='.$ref,
+            "Fail"    =>  $url.'/booking/checkout?code='.$ref
         );
         
         return $arr;
