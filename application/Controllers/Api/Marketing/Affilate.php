@@ -66,6 +66,8 @@ class Affilate extends Webservice {
         $record->operators                  = isset($data->operators) ? (string)implode($data->operators,'/') : '';
 
         $record->is_active                  = 1;
+
+
         
         $record->save();
         $this->generate($record->toArray());
@@ -156,8 +158,15 @@ class Affilate extends Webservice {
                 'code' => $param['destination_value'],
                 'type' => $param['destination_type'],
             ),
-            'duration' => 7
+
         );
+
+
+        $end = strtotime($arr['date']['end']);
+        $start = strtotime($arr['date']['start']);
+        $datediff = $end - $start ;
+        $arr['duration'] = intval(round($datediff / (60 * 60 * 24)));
+
         
         if((int)$param['children'] > 0 ){
             $arr['children'] = [];
