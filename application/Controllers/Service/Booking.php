@@ -530,9 +530,9 @@ class Booking extends Service{
     
     public function process() {
         
-        $transaction = Input::get('ref');
-        $record      = BookingObj::where('transaction_id',$transaction)->first();
-        
+        $code = Input::get('code');
+        $record      = BookingObj::where('code',$code)->first();
+        $transaction = $record->transaction_id;
         if($record != NULL && $record->payment_method > 1){
             
             if($record->payment_method == 2) {
@@ -621,11 +621,12 @@ class Booking extends Service{
                 }catch(\Exception $e){
                     
                 }
-               
+               // /booking/complete?booking=844
                  \Core\Http\Redirect::go('/booking/complete');
             }else{
                 $record->status  =3;
                 $record->save();
+                ///booking/complete?booking=844
                  \Core\Http\Redirect::go('/booking/failure');
             }
         }else{

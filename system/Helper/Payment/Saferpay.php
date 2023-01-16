@@ -43,7 +43,7 @@ class Saferpay {
         $payload = array(
             'RequestHeader' => $this->getHeader(),
             'TerminalId'    => $this->TerminalId,
-            'ReturnUrls'    => $this->getCallbackUrl($ref),
+            'ReturnUrls'    => $this->getCallbackUrl($ref,$booking),
             'Payment' => array(
                 'Amount' => array(
                     'Value' => floatVal($amount),
@@ -143,12 +143,12 @@ class Saferpay {
         return $arr;
     }
     
-    public function getCallbackUrl($ref) {
+    public function getCallbackUrl($ref,$code) {
         
         $url = 'https://www.martireisen.at';
 
         $arr = array(
-            "Success" =>  'https://webapi.martireisen.at/service/booking/process?ref='.$ref,
+            "Success" =>  'https://webapi.martireisen.at/service/booking/process?code='.$code,
             "Fail"    =>  $url.'/booking/checkout?code='.$ref
         );
         
