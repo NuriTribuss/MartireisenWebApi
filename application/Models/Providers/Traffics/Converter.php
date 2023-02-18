@@ -64,4 +64,8 @@ class Converter {
         $result->hotelList = $data;
         return $result;
     }
+    public function offer($result){
+        $result->commonOffer->hotelOffer->hotel->name_sef = \Helper\Url::beautify($result->commonOffer->hotelOffer->hotel->name);
+        return $result;
+    }
 }

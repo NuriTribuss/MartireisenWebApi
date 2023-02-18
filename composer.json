@@ -1,10 +1,13 @@
 {
-    "name": "Marti Reisen",
+    "name": "martireisen/webapi",
     "description": "Marti Reisen",
     "version" : "1.0.0-dev",
     "config": {
         "platform": {
             "php": "7.2.11"
+        },
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
         }
     },
     "type": "project",

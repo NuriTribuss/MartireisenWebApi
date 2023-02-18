@@ -164,6 +164,7 @@ class Connector {
         
         $this->requestStart();
         $response = $this->gate->offer($code,$type);
+        $response = $this->gate->converter->offer($response);
         $this->requestEnd();
         
         $return   = array(
