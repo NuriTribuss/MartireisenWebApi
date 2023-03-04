@@ -51,7 +51,6 @@ class Converter {
     }
     
     public function hotel($result) {
-        
         $data = [];
         
         foreach($result->hotelList as $key => $hotel) {
@@ -60,12 +59,18 @@ class Converter {
             $data[] = $hotel;
             
         }
-        
+        $data = \array_filter($data, static function ($hotel) {
+            return $hotel->giata->hotelId > 0;
+        });
         $result->hotelList = $data;
         return $result;
     }
     public function offer($result){
         $result->commonOffer->hotelOffer->hotel->name_sef = \Helper\Url::beautify($result->commonOffer->hotelOffer->hotel->name);
+        return $result;
+    }
+
+    public function completion($result){
         return $result;
     }
 }

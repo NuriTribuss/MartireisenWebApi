@@ -65,7 +65,9 @@ class Connector {
         $this->requestStart();
         $response        = $this->gate->completions($query,$type,$loc);
      //   $response        = $this->gate->converter->region($response);
-        
+        $response        = $this->gate->converter->completion($response);
+
+
         $this->requestEnd();
         
         $return   = array(
