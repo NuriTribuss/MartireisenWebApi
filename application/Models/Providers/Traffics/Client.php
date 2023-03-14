@@ -156,7 +156,7 @@ class Client {
             ],
            // 'optionHeliView' => true,
            // 'optionHotelFilter' => -2,
-            'sortBy'    => 'quality',
+            'sortBy'    => 'price',
            // 'mediaOperatorList' => 'TUI,FTI,5VF,ALL,ANEX,OGE'
            
         ];
