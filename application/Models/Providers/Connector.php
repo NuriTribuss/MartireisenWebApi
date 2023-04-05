@@ -103,6 +103,31 @@ class Connector {
         
         return $return;
     }
+
+    public function hotelByGiata() {
+        $data = \Helper\Input::json();
+        $this->requestStart();
+        $result = [];
+        foreach ($data->codes as $id) {
+            $this->gate  = new Client();
+            $htl = $this->gate->hotel($id);
+            array_push($result, $htl);
+        }
+        $response = $result;
+        $response = $this->gate->converter->hotel($response);
+        $this->requestEnd();
+
+        $return   = array(
+            'request'  => $data,
+            'response' => $response,
+            'stats'    => $this->stats,
+            'duration' => $this->gate->durationChanged,
+            'error'    => $response->error != '' || $response->api_error != ''
+
+        );
+
+        return $return;
+    }
     
     public function hotelDetail($id) {
        // $this->gate->filter($filter);
@@ -248,7 +273,6 @@ class Connector {
     public function setFilter($data = null) {
         
         $data = $data != null ? $data : \Helper\Input::json();
-
         $filter = new \Model\Providers\Filter();
         
         $filter->setNavigation('1,'.$this->limit);
@@ -314,12 +338,11 @@ class Connector {
         if(isset($data->destination->code) && $data->destination->type == 'country' ){
             $filter->setRegionList($data->destination->code);
         }
-        
-        
-        if(isset($data->destination->code) && $data->destination->type == 'hotel' ){
-            $filter->setGiataIdList($data->destination->code);
+
+        if(isset($data->giataIdList)){
+            $filter->setGiataIdList($data->giataIdList);
         }
-        
+
         if(isset($data->star) && $data->star > 0){
             $filter->setMinCategory($data->star);
         }

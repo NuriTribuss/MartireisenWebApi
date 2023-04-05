@@ -21,7 +21,14 @@ class Hotel extends Service {
         
         $this->response->setData($result)->setStatus(!$result['error'])->out();
     }
-    
+
+    public function listByGiata() {
+
+        $result = $this->connector->hotelByGiata();
+        $this->response->setData($result)->setStatus(!$result['error'])->out();
+
+    }
+
     public function top() {
         
         $this->connector->setFilter();
