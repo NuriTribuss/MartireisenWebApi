@@ -89,7 +89,7 @@ class Tour extends Webservice {
     }
     
     public function fetch($id = 0) {
-        
+
         if(empty((int)$id)){
             $this->response->out();
         }

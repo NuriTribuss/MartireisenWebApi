@@ -2,6 +2,7 @@
 
 namespace Model;
 
+use Helper\Header;
 use Model\Tour\Plan;
 use Model\Tour\PlanTranslation;
 use Model\Tour\Image;
@@ -22,8 +23,9 @@ class TourView {
     private $language;
     
     public function __construct() {
-        
-        $this->language = User\Customer::getLanguage();
+
+        //$this->language = User\Customer::getLanguage();
+        $this->language = Header::language();
     }
     
     public function get($id) {

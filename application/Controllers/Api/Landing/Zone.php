@@ -339,7 +339,7 @@ class Zone extends Webservice {
 
             array_push($return,$add);
         }
-        
-        return $return;        
+
+        return $return;
     }
 }
