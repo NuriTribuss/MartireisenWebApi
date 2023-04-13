@@ -64,7 +64,6 @@ class Tour extends Service {
         $booking->source      = 'Tour';
         $booking->api_service = ''; //json_encode($create['service']);
         $booking->customer_id = 0;
-        
         $booking->save();
         
         // Ulasım bilgileri
@@ -272,7 +271,7 @@ class Tour extends Service {
             'period_id' => $data['period_id'],
             'station_id' => $data['station_id'],
             'children'  => $data['children'],
-            'adult'     => $data['traveller']
+            'adult'     => count($data['traveller'])
         ];
 
         $summary = $tourView->getSummary($opts);
