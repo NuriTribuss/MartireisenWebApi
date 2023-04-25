@@ -27,8 +27,9 @@ class Tour extends Service {
         $create    = $this->getBooking($data);          
        
         $booking   = new BookingObj;
-        
-        $booking->ref           = $data['ref'];
+
+        $booking->ref           =base64_encode($data['tour_id'].$data['personal']['email']);
+        //$booking->ref           = $data['ref'];
         $booking->name          = $data['personal']['name'];
         $booking->surname       = $data['personal']['surname'];
         $booking->gender        = $data['personal']['gender'];
@@ -98,7 +99,7 @@ class Tour extends Service {
         if($data['payment']['method'] == 2){
             
             $sofort = new \Helper\Payment\Sofort();
-            $return = $sofort->checkout(floatval($booking->amount),$booking->code);
+            $return = $sofort->checkout(floatval($booking->amount),$booking->code,$booking->ref);
             if($return['status'] == false) {
                 $booking->transaction_error = $return['data'];
                 $booking->save();
@@ -112,7 +113,7 @@ class Tour extends Service {
         }else if($data['payment']['method'] == 3){
             
             $saferpay = new \Helper\Payment\Saferpay();
-            $return = $saferpay->checkout(floatval($booking->amount*100),$booking->code);
+            $return = $saferpay->checkout(floatval($booking->amount*100),$booking->code,$booking->ref);
 
             if($return['status'] == false) {
                 $booking->transaction_error = $return['data'];
@@ -270,7 +271,7 @@ class Tour extends Service {
             'tour_id' => $data['tour_id'],
             'period_id' => $data['period_id'],
             'station_id' => $data['station_id'],
-            'children'  => $data['children'],
+            'children'  => count($data['children']),
             'adult'     => count($data['traveller'])
         ];
 
@@ -296,7 +297,6 @@ class Tour extends Service {
             'giata' => $data['tour_id'],
             'name'  => $tour['title']
         );
-
         return $data;
         
      //   $this->response->setData($offers)->setStatus(!$offers['error'])->setMessage($offers['message'])->out();
