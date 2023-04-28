@@ -301,4 +301,10 @@ class Tour extends Service {
         
      //   $this->response->setData($offers)->setStatus(!$offers['error'])->setMessage($offers['message'])->out();
     }
+
+    public function fetch($id = -1)
+    {
+        $booking = BookingObj::where('tour_id',$id)->groupBy('status')->selectRaw('status,count(*) as cnt')->get();
+        $this->response->setStatus(true)->setData($booking)->out();
+    }
 }

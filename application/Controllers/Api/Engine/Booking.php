@@ -290,4 +290,5 @@ class Booking extends Service {
         
      //   $this->response->setData($offers)->setStatus(!$offers['error'])->setMessage($offers['message'])->out();
     }
+
 }
