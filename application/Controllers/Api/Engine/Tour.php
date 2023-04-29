@@ -304,7 +304,14 @@ class Tour extends Service {
 
     public function fetch($id = -1)
     {
-        $booking = BookingObj::where('tour_id',$id)->groupBy('status')->selectRaw('status,count(*) as cnt')->get();
-        $this->response->setStatus(true)->setData($booking)->out();
+
+        $booking_codes = BookingObj::where('tour_id',$id)->where('status',1)->select('code')->groupBy('code')->get()->pluck('code')->toArray();
+        $twoYearsAgo = date('Y-m-d', strtotime($date. ' - 2 years'));
+        $travellers = Travellers::whereIn('booking_code',$booking_codes)->where('birthday','<',$twoYearsAgo)->get()->count();
+        $booking = BookingObj::where('tour_id',$id)->groupBy('status')->selectRaw('status,sum(adult_count) as sum_adult,sum(children_count) as sum_child,count(*) as cnt')->get();
+        $resp = new \stdClass();
+        $resp->reserves = $booking;
+        $resp->successReservesCount = $travellers;
+        $this->response->setStatus(true)->setData($resp)->out();
     }
 }
