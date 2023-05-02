@@ -2,6 +2,7 @@
 
 namespace Application\Api\Engine;
 
+use Model\Booking\Notes;
 use Model\Providers\Connector;
 use Model\Booking\Booking as BookingObj;
 use Model\Booking\Travellers;
@@ -94,6 +95,14 @@ class Tour extends Service {
 
             $person->is_children    = 1;
             $person->save();
+        }
+
+        if ($data['comment'] != null){
+            $comment = new Notes();
+            $comment->booking_id = $booking->id;
+            $comment->user_id = 0; //0: customer - set user_id require auth
+            $comment->comment = $data['comment'];
+            $comment->save();
         }
      
         if($data['payment']['method'] == 2){
@@ -302,10 +311,10 @@ class Tour extends Service {
      //   $this->response->setData($offers)->setStatus(!$offers['error'])->setMessage($offers['message'])->out();
     }
 
-    public function fetch($id = -1)
+    public function getTourInfo()
     {
-
-        $booking_codes = BookingObj::where('tour_id',$id)->where('status',1)->select('code')->groupBy('code')->get()->pluck('code')->toArray();
+        $data = \Helper\Input::json();
+        $booking_codes = BookingObj::where('tour_id',$data->tour_id)->where('period_id',$data->period_id)->where('status',1)->select('code')->groupBy('code')->get()->pluck('code')->toArray();
         $twoYearsAgo = date('Y-m-d', strtotime($date. ' - 2 years'));
         $travellers = Travellers::whereIn('booking_code',$booking_codes)->where('birthday','<',$twoYearsAgo)->get()->count();
         $booking = BookingObj::where('tour_id',$id)->groupBy('status')->selectRaw('status,sum(adult_count) as sum_adult,sum(children_count) as sum_child,count(*) as cnt')->get();

@@ -2,6 +2,7 @@
 
 namespace Application\Api\Engine;
 
+use Model\Booking\Notes;
 use Model\Providers\Connector;
 use Model\Booking\Booking as BookingObj;
 use Model\Booking\Travellers;
@@ -19,78 +20,87 @@ class Booking extends Service {
         $this->connector = new Connector();
     }
     
-    public function create() {
-        
-        $data      = $this->check();
-        $create    = $this->getBooking($data);          
-       
-        $booking   = new BookingObj;
-        
-        $booking->ref           = $data['ref'];
-        $booking->name          = $data['personal']['name'];
-        $booking->surname       = $data['personal']['surname'];
-        $booking->gender        = $data['personal']['gender'];
+    public function create()
+    {
 
-        $booking->phone         = $data['personal']['phone'];
-        $booking->email         = $data['personal']['email'];
-        $booking->birthday      = $data['personal']['birthday'];
-        $booking->address       = $data['personal']['address'];
-        $booking->country       = $data['personal']['country'];
-        $booking->state         = $data['personal']['state'];
-        $booking->city          = $data['personal']['city'];
-        $booking->status        = self::BOOKING_PENDING;
-        
-        $booking->amount             = $create['amount'];
-        $booking->currency           = $create['currency'];
-        $booking->start              = $create['travel']['start'];
-        $booking->end                = $create['travel']['end'];
-        $booking->duration           = (int) $create['duration'];
-        $booking->travel_city        = $create['travel']['city'];
-        $booking->operator           = $create['operator'];
-        $booking->hotel_giata_code   = $create['hotel']['giata'];
-        $booking->hotel_name         = $create['hotel']['name'];
-        $booking->payment_method     = $data['payment']['method'];
-        $booking->adult_count        = count($data['traveller']);
-        $booking->children_count     = count($data['children']);
-       
-       
+        $data = $this->check();
+        $create = $this->getBooking($data);
+
+        $booking = new BookingObj;
+
+        $booking->ref = $data['ref'];
+        $booking->name = $data['personal']['name'];
+        $booking->surname = $data['personal']['surname'];
+        $booking->gender = $data['personal']['gender'];
+
+        $booking->phone = $data['personal']['phone'];
+        $booking->email = $data['personal']['email'];
+        $booking->birthday = $data['personal']['birthday'];
+        $booking->address = $data['personal']['address'];
+        $booking->country = $data['personal']['country'];
+        $booking->state = $data['personal']['state'];
+        $booking->city = $data['personal']['city'];
+        $booking->status = self::BOOKING_PENDING;
+
+        $booking->amount = $create['amount'];
+        $booking->currency = $create['currency'];
+        $booking->start = $create['travel']['start'];
+        $booking->end = $create['travel']['end'];
+        $booking->duration = (int)$create['duration'];
+        $booking->travel_city = $create['travel']['city'];
+        $booking->operator = $create['operator'];
+        $booking->hotel_giata_code = $create['hotel']['giata'];
+        $booking->hotel_name = $create['hotel']['name'];
+        $booking->payment_method = $data['payment']['method'];
+        $booking->adult_count = count($data['traveller']);
+        $booking->children_count = count($data['children']);
+
+
         $booking->save();
-        
-        $booking->code        = 'M'.date('d').date('m').$booking->id;
-        $booking->api_code    = '';
-        $booking->source      = 'Traffics';  
+
+        $booking->code = 'M' . date('d') . date('m') . $booking->id;
+        $booking->api_code = '';
+        $booking->source = 'Traffics';
         $booking->api_service = json_encode($create['service']);
         $booking->customer_id = 0;
-        
+
         $booking->save();
-        
+
         // Ulasım bilgileri
 
         // !!!!!!!!!!!!!!! ######### yapılacak...
-      //  $this->setTransport($data['ref'],$booking->code);
+        //  $this->setTransport($data['ref'],$booking->code);
 
-        foreach($data['traveller'] as $traveller){
-            
+        foreach ($data['traveller'] as $traveller) {
+
             $person = new Travellers();
-            $person->booking_code   = $booking->code;
-            $person->name           = $traveller['name'];
-            $person->surname        = $traveller['surname'];
-            $person->birthday       = $traveller['birthday'];
-            $person->gender         = $traveller['gender'];
+            $person->booking_code = $booking->code;
+            $person->name = $traveller['name'];
+            $person->surname = $traveller['surname'];
+            $person->birthday = $traveller['birthday'];
+            $person->gender = $traveller['gender'];
             $person->save();
         }
-        
-        foreach($data['children'] as $traveller){
+
+        foreach ($data['children'] as $traveller) {
 
             $person = new Travellers();
-            $person->booking_code   = $booking->code;
-            $person->name           = $traveller['name'];
-            $person->surname        = $traveller['surname'];
-            $person->birthday       = $traveller['birthday'];
-            $person->gender         = $traveller['gender'];
+            $person->booking_code = $booking->code;
+            $person->name = $traveller['name'];
+            $person->surname = $traveller['surname'];
+            $person->birthday = $traveller['birthday'];
+            $person->gender = $traveller['gender'];
 
-            $person->is_children    = 1;
+            $person->is_children = 1;
             $person->save();
+        }
+
+        if ($data['comment'] != null){
+            $comment = new Notes();
+            $comment->booking_id = $booking->id;
+            $comment->user_id = 0; //0: customer - set user_id require auth
+            $comment->comment = $data['comment'];
+            $comment->save();
         }
      
         if($data['payment']['method'] == 2){
