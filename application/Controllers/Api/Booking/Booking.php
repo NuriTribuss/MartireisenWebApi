@@ -3,7 +3,9 @@
 namespace Application\Api\Booking;
 
 use Core\Base\Webservice;
+use Helper\Input;
 use Model\Booking\Booking as Model;
+use Model\Booking\Notes;
 use Model\Booking\Travellers;
 use Model\Booking\PaymentMethod;
 use Model\Booking\Status;
@@ -215,7 +217,7 @@ class Booking extends Webservice {
             $return['status']       = Status::where('id',$record->status)->first()->toArray();
             $flights = Transports::where('booking_code',$return['code'])->get(); 
             $return['flights'] = $flights->toArray();
-            
+            $return['notes'] = Notes::where('booking_id',$id)->with('user')->get();
             $return['api']          = [];
             $file = PATH.'/data/log/offer/'.$record->ref.'.txt';
             if(file_exists($file)){
@@ -369,6 +371,68 @@ class Booking extends Webservice {
         $data = Logger::where(['module' => 'BOOKING' , 'module_code' => $bookingId])->get()->toArray();
         $this->response->setStatus(true)->setData($data)->out();
 
+    }
+
+    public function addnote($id = 0) {
+        if(empty((int)$id)){
+            $this->response->out();
+        }
+        $record = Model::find($id); //get booking record where id
+        if($record == NULL){  //check exist booking
+            $this->response->out();
+        }
+
+        $user_id = $this->session->id; // current user id
+        $old_note = Notes::where('booking_id',$id)->where('user_id',$user_id)->first();  // check exist note for this booking record as current user
+
+        if(!$user_id || $old_note){
+            $this->response->out();
+        }
+
+        $comment = \Helper\Input::json()->comment;
+
+        $note = new Notes();
+        $note->booking_id = $id;
+        $note->user_id  = $user_id;
+        $note->comment = $comment;
+        $note->save();
+        //$res = Notes::where('booking_id',$id)->get();
+        $this->response->setStatus(true)->out();
+
+    }
+    public function updatenote($id = 0) {
+        if(empty((int)$id)){
+            $this->response->out();
+        }
+
+        $user_id = $this->session->id; // current user id
+        $note = Notes::where('user_id',$user_id)->find($id);  // check exist note for this booking record as current user
+
+        if(!$user_id || !$note){
+            $this->response->out();
+        }
+
+        $comment = \Helper\Input::json()->comment;
+        $note->comment = $comment;
+        $note->save();
+        //$res = Notes::where('booking_id',$id)->get();
+        $this->response->setStatus(true)->out();
+    }
+
+    public function destroynote($id = 0) {
+        if(empty((int)$id)){
+            $this->response->out();
+        }
+
+        $user_id = $this->session->id; // current user id
+        $note = Notes::where('user_id',$user_id)->find($id);  // check exist note for this booking record as current user
+
+        if(!$user_id || !$note){
+            $this->response->out();
+        }
+        $note->delete();
+        //$res = Notes::where('booking_id',$id)->get();
+        $this->response->setStatus(true)->out();
     }
     
 }

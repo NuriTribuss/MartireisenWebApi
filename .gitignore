@@ -475,3 +475,9 @@ composer.lock
 
 ##### config.ini
 /config/config.ini
+
+## .idea/
+.idea/*
+
+## /data
+/data
