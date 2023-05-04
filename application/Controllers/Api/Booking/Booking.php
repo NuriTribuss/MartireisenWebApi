@@ -378,14 +378,15 @@ class Booking extends Webservice {
             $this->response->out();
         }
         $record = Model::find($id); //get booking record where id
+
         if($record == NULL){  //check exist booking
             $this->response->out();
         }
 
         $user_id = $this->session->id; // current user id
-        $old_note = Notes::where('booking_id',$id)->where('user_id',$user_id)->first();  // check exist note for this booking record as current user
+        //$old_note = Notes::where('booking_id',$id)->where('user_id',$user_id)->first();  // check exist note for this booking record as current user
 
-        if(!$user_id || $old_note){
+        if(!$user_id){
             $this->response->out();
         }
 
