@@ -54,8 +54,70 @@ class Tour extends Webservice {
         }
 
         $this->response->out();
-    }    
-    
+    }
+
+    public function search() {
+
+        try {
+            $search_data = \Helper\Input::json();
+            $model = $this->build(Model::whereRaw('1 = 1'));
+            $pagination = [
+                'total' => $model->count(),
+                'page' => $search_data->page
+            ];
+
+            $sources = [];
+            $distnations = [];
+            $dates = [];
+
+            $allData = $model->get();
+            $allTours = [];
+            $allTourView = new TourView();
+            foreach ($allData->toArray() as $tr) {
+                $allTours[] = $allTourView->get($tr['id']);
+            }
+            foreach ($allTours as $atour) {
+                    array_push($distnations, $atour['destination']);
+                    if($atour['period'] != null) {
+                       array_push($dates, $atour['period']['start_date_pretty']);
+                       foreach ($atour['period']['stations'] as $st) {
+                            array_push($sources, ['id' =>$st['id'],'station'=>$st['station']]);
+                        }
+                    }
+            }
+            $sources = array_unique($sources,SORT_REGULAR);
+            $distnations = array_unique($distnations,SORT_REGULAR);
+            $dates = array_unique($dates,SORT_REGULAR);
+
+            $skip   = $pagination['page'] == 1 ? 0 : (($pagination['page'] -1) * $this->limit);
+            $data   = $model->with(['translate' => function($q) {
+                $q->where('language',$this->language);
+            }])->skip($skip)->take($this->limit)->get();
+
+            $tours = [];
+            if(Input::get('ssr') != 1) {
+                $tours = $data->toArray();
+            }else{
+                $tourView = new TourView();
+                foreach($data->toArray() as $tour){
+                    $tours[] = $tourView->get($tour['id']);
+                }
+            }
+            $result = [
+                'tours' => $tours,
+                'sources' => $sources,
+                'distnations' => $distnations,
+                'dates' => $dates
+            ];
+            $this->response->setStatus(true)->setMeta($this->paginate($pagination))->setData($result)->out();
+
+        }catch(\Exception $e){
+            $this->response->setMessage($e->getMessage())->http(400);
+        }
+
+        $this->response->out();
+    }
+
     public function show($id = 0) {
         
         if(empty((int)$id)){
