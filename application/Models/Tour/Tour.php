@@ -11,4 +11,9 @@ class Tour  extends Model {
     public function translate() {
         return $this->hasOne('\Model\Tour\TourTranslation','tour_id','id');
     }
+
+    public function periods()
+    {
+        return $this->hasMany(Period::class);
+    }
 }

@@ -481,3 +481,4 @@ composer.lock
 
 ## /data
 /data
+/cache/*
