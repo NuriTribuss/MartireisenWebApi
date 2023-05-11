@@ -72,8 +72,10 @@ class Tour extends Webservice
             ];
 
             $sources = [];
-            $distnations = [];
+            $destination = [];
             $dates = [];
+
+
 
             $allData = $model->get();
             $allTours = [];
@@ -82,17 +84,17 @@ class Tour extends Webservice
                 $allTours[] = $allTourView->get($tr['id']);
             }
             foreach ($allTours as $atour) {
-                array_push($distnations, $atour['destination']);
+                $destination[]= $atour['destination'];
                 if ($atour['period'] != null) {
                     array_push($dates, $atour['period']['start_date_pretty']);
                     foreach ($atour['period']['stations'] as $st) {
-                        array_push($sources, ['id' => $st['id'], 'station' => $st['station']]);
+                        array_push($sources,  $st['station']);
                     }
                 }
             }
 
             $sources = array_unique($sources, SORT_REGULAR);
-            $distnations = array_unique($distnations, SORT_REGULAR);
+            $destination = array_unique($destination, SORT_REGULAR);
             $dates = array_unique($dates, SORT_REGULAR);
 
             $skip = $pagination['page'] == 1 ? 0 : (($pagination['page'] - 1) * $this->limit);
@@ -100,17 +102,19 @@ class Tour extends Webservice
             if ($search_data->source)
                 $model = $model->whereHas('periods', function ($q) use ($search_data) {
                     $q->with('stations')->whereHas('stations',function ($qq) use($search_data){
-                        $qq->where('id',$search_data->source);
+                        $qq->where('station',$search_data->source);
                     });
                 });
 
-            if ($search_data->distnation)
-                $model = $model->where('destination',$search_data->distnation);
+            if ($search_data->destination)
+                $model = $model->where('destination',$search_data->destination);
 
             if ($search_data->date)
                 $model = $model->with('periods')->whereHas('periods', function ($q) use ($search_data) {
                     $q->where('start_date','>=',Carbon::createFromFormat('d.m.Y',$search_data->date)->startOfDay()->timestamp)->where('start_date','<',Carbon::createFromFormat('d.m.Y',$search_data->date)->endOfDay()->timestamp);
                 });
+
+            $pagination['total'] = $model->count();
 
             $data = $model->with(['translate' => function ($q) {
                 $q->where('language', $this->language);
@@ -126,12 +130,14 @@ class Tour extends Webservice
                     $tours[] = $tourView->get($tour['id']);
                 }
             }
+
             $result = [
                 'tours' => $tours,
-                'sources' => $sources,
-                'distnations' => $distnations,
-                'dates' => $dates
+                'sources' => array_values($sources),
+                'destination' => array_values($destination),
+                'dates' => array_values($dates)
             ];
+            
             $this->response->setStatus(true)->setMeta($this->paginate($pagination))->setData($result)->out();
 
         } catch (\Exception $e) {
