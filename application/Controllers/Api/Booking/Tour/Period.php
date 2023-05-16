@@ -48,6 +48,14 @@ class Period extends Webservice {
             foreach($data as $key => &$d){
                 $tour  = \Model\Tour\TourTranslation::where('tour_id',$d->tour_id)->where('language','tr')->first();
                 $d->title = $tour->name;
+                $booking_codes = Booking::where('tour_id',$d->tour_id)->where('period_id',$d->id)->where('status',1)->select('code')->groupBy('code')->get()->pluck('code')->toArray();
+                $twoYearsAgo = date('Y-m-d', strtotime($date. ' - 2 years'));
+                $travellers = Travellers::whereIn('booking_code',$booking_codes)->where('birthday','<',$twoYearsAgo)->get()->count();
+                $booking = Booking::where('tour_id',$d->tour_id)->groupBy('status')->selectRaw('status,sum(adult_count) as sum_adult,sum(children_count) as sum_child,count(*) as cnt')->get();
+                $reserveInfo = new \stdClass();
+                $reserveInfo->reserves = $booking;
+                $reserveInfo->successReservesCount = $travellers;
+                $d->reserveInfo = $reserveInfo;
             }
             
             $this->response->setStatus(true)->setMeta($this->paginate($pagination))->setData($data->toArray())->out();
