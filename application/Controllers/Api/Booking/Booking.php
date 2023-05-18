@@ -3,6 +3,7 @@
 namespace Application\Api\Booking;
 
 use Core\Base\Webservice;
+use DateTime;
 use Helper\Input;
 use Model\Booking\Booking as Model;
 use Model\Booking\Notes;
@@ -22,9 +23,9 @@ class Booking extends Webservice {
         
          try{
              
-            $model = $this->build(Model::whereRaw('1 = 1'));
-            $model = $this->filter($model); 
-
+            $model = Model::whereRaw('1 = 1');
+            $filter = $_GET;
+            $model = $this->filter($model,$filter);
             $pagination = [
                 'total' => $model->count(),
                 'page'  => \Helper\Input::get('page',1)
@@ -319,41 +320,42 @@ class Booking extends Webservice {
         $this->response->setStatus(true)->out();
     }    
     
-    private function filter($entity) {
+    private function filter($entity,$filter) {
 
-        $params = $_GET;
-
+        $params = $filter;
         if (!empty($params['code'])) {
-            $entity = $entity->where('code', 'LIKE', $params['code'] . '%');
+            $entity = $entity->where('code', 'LIKE', '%' . $params['code'] . '%');
         }
-
         if (!empty($params['source'])) {
-            $entity = $entity->where('source', $params['source']);
+            $entity = $entity->where('source', '%' . $params['source']);
         }
         
         if (!empty($params['email'])) {
-            $entity = $entity->where('email', 'LIKE', $params['email'] . '%');
+            $entity = $entity->where('email', 'LIKE', '%' . $params['email'] . '%');
         }
         
         if (!empty($params['name'])) {
-            $entity = $entity->where('name', 'LIKE', $params['name'] . '%');
+            $entity = $entity->where('name', 'LIKE', '%' . $params['name'] . '%');
         }
 
         if (!empty($params['surname'])) {
-            $entity = $entity->where('surname', 'LIKE', $params['surname'] . '%');
+            $entity = $entity->where('surname', 'LIKE', '%' . $params['surname'] . '%');
         }
         
         // 2020-01-25 00:00:00
-        
         if (!empty($params['created_at'])) {
             if (!empty($params['created_at']['min'])) {
-                $entity = $entity->where('created_at', '>=', $params['created_at']['min']);
+                $created_at_min = new DateTime($params['created_at']['min']);
+                $created_at_min_str = $created_at_min->format('Y-m-d');
+                $entity = $entity->where('created_at', '>=', $created_at_min_str);
             }
             if (!empty($params['created_at']['max'])) {
-                $entity = $entity->where('created_at', '<=', $params['created_at']['max']);
+                $created_at_max = new DateTime($params['created_at']['max']);
+                $created_at_max->modify('+1 day');
+                $created_at_max_str = $created_at_max->format('Y-m-d');
+                $entity = $entity->where('created_at', '<', $created_at_max_str);
             }
         }
-
         return $entity;
     }  
     

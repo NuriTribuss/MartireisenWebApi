@@ -111,8 +111,6 @@ class Webservice {
     }
 
     public function build($model) {
-
-
         if(count($this->whereParams) > 0 ){
             foreach($this->whereParams as $param){
                $model =  $model->where($param['column'],$param['seperator'],$param['value']);
