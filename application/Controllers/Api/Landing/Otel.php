@@ -22,17 +22,33 @@ class Otel extends Webservice {
     public function get() {
         
          try{
-             
-            $model = $this->build(Model::whereRaw('1 = 1'));
-            
+
+            $model = Model::whereRaw('1 = 1');
+            $model = $model->with('translate');
+            $filter = $_GET;
+            if (!empty($filter['name'])) {
+                $model = $model->whereHas('translate', function ($q) use ($filter) {
+                    $q->where('title','LIKE','%' . $filter['name'] . '%');
+                });
+            }
+            if (!empty($filter['url'])) {
+                $model = $model->whereHas('translate', function ($q) use ($filter) {
+                    $q->where('url','LIKE','%' . $filter['url'] . '%');
+                });
+            }
+            if (!empty($filter['language'])) {
+                 $model = $model->whereHas('translate', function ($q) use ($filter) {
+                     $q->where('language',$filter['language']);
+                 });
+            }
             $pagination = [
                 'page'  => \Helper\Input::get('page',1)
             ];
-            
-            
+
+
             $skip                   = $pagination['page'] == 1 ? 0 : (($pagination['page'] -1) * $this->limit);
             $pagination['total']    = $model->with('translate')->whereHas('translate' , $this->filterTranslate())->count();
-            
+
             $data   = $model->skip($skip)->take($this->limit)->get();
             $this->response->setStatus(true)->setMeta($this->paginate($pagination))->setData($data)->out();
 
@@ -42,7 +58,22 @@ class Otel extends Webservice {
 
         $this->response->out();
     }
-    
+
+    private function filter($entity,$filter) {
+        $params = $filter;
+        if (!empty($params['name'])) {
+            $entity = $entity->where('code', 'LIKE', '%' . $params['code'] . '%');
+        }
+//        if (!empty($params['url'])) {
+//            $entity = $entity->where('source', '%' . $params['source']);
+//        }
+//
+//        if (!empty($params['language'])) {
+//            $entity = $entity->where('email', 'LIKE', '%' . $params['email'] . '%');
+//        }
+        return $entity;
+    }
+
     public function store() {
         
         $data = \Helper\Input::json();
