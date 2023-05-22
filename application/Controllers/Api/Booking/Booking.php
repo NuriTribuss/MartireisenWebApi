@@ -245,7 +245,7 @@ class Booking extends Webservice {
         if($record == NULL){
             $this->response->setMessage('Record Not Found')->out();
         }
-        
+//        dd($record);
         if(empty($record->api_code)) {
             $this->response->setMessage('Api Code Not Found')->out();
         }
@@ -327,7 +327,7 @@ class Booking extends Webservice {
             $entity = $entity->where('code', 'LIKE', '%' . $params['code'] . '%');
         }
         if (!empty($params['source'])) {
-            $entity = $entity->where('source', '%' . $params['source']);
+            $entity = $entity->where('source',$params['source']);
         }
         
         if (!empty($params['email'])) {
