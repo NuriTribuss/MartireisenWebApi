@@ -453,4 +453,16 @@ class Connector {
     public function setLimit($limit) {
         $this->limit = $limit;
     }
+
+    public function generateBook($apiData) {
+        $this->gate->setBookingData($apiData);
+        $this->requestStart();
+        $response = $this->gate->booking();
+        $this->requestEnd();
+        return  array(
+                'request'  => $this->gate->getBookingData(),
+                'response' => $response,
+                'stats'    => $this->stats
+        );
+    }
 }

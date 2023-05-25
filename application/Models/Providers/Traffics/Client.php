@@ -80,7 +80,6 @@ class Client {
     }
     
     public function updateBooking($id,$data) {
-        
         $this->bookingUrl.='bookings/'.$id;
         $this->headers[] = "Content-Type: application/json";
         
@@ -408,7 +407,7 @@ class Client {
         $response =  json_decode($response);
         
         if($info['http_code'] != 200 && $info['http_code'] != 201){
-            return ['error' => $error , 'url' => $url , 'api_error' => $response->error];
+            return ['error' => $error , 'url' => $url , 'api_error' => $response->error , 'info' => $info];
         }
         
         return $response;

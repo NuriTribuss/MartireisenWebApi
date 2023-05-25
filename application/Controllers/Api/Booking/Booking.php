@@ -245,7 +245,6 @@ class Booking extends Webservice {
         if($record == NULL){
             $this->response->setMessage('Record Not Found')->out();
         }
-//        dd($record);
         if(empty($record->api_code)) {
             $this->response->setMessage('Api Code Not Found')->out();
         }
@@ -256,7 +255,11 @@ class Booking extends Webservice {
         
         $client = new \Model\Providers\Traffics\Client();
         $return = $client->updateBooking($record->api_code, ['type' => 'through']);
-        
+        if($return["api_error"] != null)
+        {
+            $this->response->setStatus(false)->setMessage($return["api_error"])->out();
+            return;
+        }
         $record->mode = 'through';
         $record->save();
         

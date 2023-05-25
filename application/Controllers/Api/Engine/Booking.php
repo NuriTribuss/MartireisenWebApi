@@ -131,8 +131,7 @@ class Booking extends Service {
                 $this->response->setData($return)->setStatus(true)->out();
             }
         }else{
-            /*
-            $create     = $this->api->createBooking($data);
+            $create  = $this->connector->generateBook($data);
             if(isset($create['error'])){
                 $this->response->setMessage(_lang('booking.unknown_error',true))->out();
             }
@@ -142,7 +141,7 @@ class Booking extends Service {
 
             $booking->api_code = $create['response']->trafficsBookingCode;
             $booking->save();
-            */
+
             try{
                 $mail = new \Model\Mail\Customer();
                 $mail->sendBookingRequested($data['personal']['email'], $booking->toArray());
