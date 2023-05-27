@@ -18,7 +18,6 @@ class Hotel extends Service {
         
         $this->connector->setFilter();
         $result = $this->connector->hotels();
-        
         $this->response->setData($result)->setStatus(!$result['error'])->out();
     }
 

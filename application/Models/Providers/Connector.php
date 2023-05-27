@@ -311,6 +311,9 @@ class Connector {
             }else if($data->sort == 'PRICE_ZA'){
                 $filter->setSortBy('price');
                 $filter->setSortDir('down');
+            }else if($data->sort == 'TOP'){
+                $filter->setSortBy('overall');
+                $filter->setSortDir('down');
             }
         }
         

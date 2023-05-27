@@ -340,9 +340,7 @@ class Client {
         $response = curl_exec($ch);
         $info = curl_getinfo($ch);
         $error = curl_error($ch);
-      
         $response =  json_decode($response);
-        
         if($info['http_code'] != 200){
             return ['error' => $error , 'url' => $url , 'api_error' => $response->error];
         }

@@ -56,6 +56,10 @@ class Converter {
         foreach($result->hotelList as $key => $hotel) {
             
             $hotel->name_sef = \Helper\Url::beautify($hotel->name);
+            $hotel->overall_rate = 0;
+            if($hotel->rating != null){
+                $hotel->overall_rate = $hotel->rating->overall;
+            }
             $data[] = $hotel;
             
         }
