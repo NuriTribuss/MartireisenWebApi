@@ -6,6 +6,7 @@ use Core\Base\Webservice;
 use Model\Campaign\Affilate as Model;
 use Model\Link\LinkList as Link;
 use Model\Region\HalalHotel;
+use Model\Tour\Tour;
 
 class Affilate extends Webservice {
 
@@ -142,7 +143,9 @@ class Affilate extends Webservice {
         if($param['travel_api'] == 'HalalBooking'){
             return $this->makeRouteHalal($param);
         }
-        
+        if($param['travel_api'] == 'Tour'){
+            return $this->makeRouteTour($param);
+        }
         $arr = array(
             'sf' => $param['travel_type'],
             'adults' => $param['adult'],
@@ -199,11 +202,11 @@ class Affilate extends Webservice {
     }
     
     public function makeRouteHalal($param) {
-        
+
         $arr = array(
             'date' => array(
                 'start' => empty($param['date_start']) ? \Carbon\Carbon::now()->addDay(7)->format('Y-m-d') : $param['date_start'],
-                'end'   => empty($param['date_end'])   ? \Carbon\Carbon::now()->addMonth()->addDay(8)->format('Y-m-d') : $param['date_end'] 
+                'end'   => empty($param['date_end'])   ? \Carbon\Carbon::now()->addMonth()->addDay(8)->format('Y-m-d') : $param['date_end']
             ),
             'destination' => array(
                 'name' => $param['destination_name'],
@@ -215,6 +218,16 @@ class Affilate extends Webservice {
         
         $prefix = '/halal-booking/hotel-offers';
         $link = $prefix.'?'.http_build_query($arr);
+        return $link;
+    }
+    public function makeRouteTour($param){
+        $selectedTour = Tour::find($param['destination_value']);
+        $arr = array(
+            'date' => $param['date_start'],
+        );
+
+        $prefix = '/tour/' . $selectedTour->seo_url . '?tid=' . $selectedTour->id;
+        $link = $prefix.'&'.http_build_query($arr);
         return $link;
     }
     

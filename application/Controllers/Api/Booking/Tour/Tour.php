@@ -75,8 +75,6 @@ class Tour extends Webservice
             $destination = [];
             $dates = [];
 
-
-
             $allData = $model->get();
             $allTours = [];
             $allTourView = new TourView();
@@ -116,9 +114,16 @@ class Tour extends Webservice
 
             $pagination['total'] = $model->count();
 
-            $data = $model->with(['translate' => function ($q) {
-                $q->where('language', $this->language);
-            }])->skip($skip)->take($this->limit)->get();
+            $data = [];
+            if($search_data->showAll){
+                $data = $model->with(['translate' => function ($q) {
+                    $q->where('language', $this->language);
+                }])->get();
+            }else{
+                $data = $model->with(['translate' => function ($q) {
+                    $q->where('language', $this->language);
+                }])->skip($skip)->take($this->limit)->get();
+            }
 
 
             $tours = [];
