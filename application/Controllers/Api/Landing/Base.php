@@ -23,8 +23,7 @@ class Base extends Webservice {
         
          try{
              
-            $model = $this->build(Model::whereRaw('1 = 1'));
-            
+            $model = Model::whereRaw('1 = 1');
             $pagination = [
                 'page'  => \Helper\Input::get('page',1)
             ];
@@ -249,13 +248,7 @@ class Base extends Webservice {
         BaseTranslation::where('base_id',$id)->delete();
         $this->response->setStatus(true)->out();
     }   
-    
-    private function filter($entity) {
 
-        $params = $_GET;
-        return $entity;
-    }  
-    
     public function filterTranslate() {
         
         $params = $_GET;

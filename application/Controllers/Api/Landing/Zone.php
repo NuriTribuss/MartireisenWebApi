@@ -21,7 +21,7 @@ class Zone extends Webservice {
         
          try{
              
-            $model = $this->build(Model::whereRaw('1 = 1'));
+            $model = Model::whereRaw('1 = 1');
             
             $pagination = [
                 'page'  => \Helper\Input::get('page',1)
