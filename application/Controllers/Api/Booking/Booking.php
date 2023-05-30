@@ -130,7 +130,7 @@ class Booking extends Webservice {
         ];
                 
         $logger = new Logger;
-        $logger->log($log);
+        $logger->log($log,$this->session);
         
         $this->response->setStatus(true)->out();
 
@@ -193,7 +193,7 @@ class Booking extends Webservice {
         ];
                 
         $logger = new Logger;
-        $logger->log($log);
+        $logger->log($log,$this->session);
         
         $this->response->setStatus(true)->out();
 
@@ -309,7 +309,7 @@ class Booking extends Webservice {
         ];
                 
         $logger = new Logger;
-        $logger->log($opts);
+        $logger->log($opts,$this->session);
     }
     
     public function destroy($id = 0) {
@@ -387,7 +387,6 @@ class Booking extends Webservice {
         if($record == NULL){  //check exist booking
             $this->response->out();
         }
-
         $user_id = $this->session->id; // current user id
         //$old_note = Notes::where('booking_id',$id)->where('user_id',$user_id)->first();  // check exist note for this booking record as current user
 
