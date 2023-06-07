@@ -3,6 +3,7 @@
 namespace Application\Api\Marketing;
 
 use Core\Base\Webservice;
+use Helper\Excel;
 use Model\Campaign\Affilate as Model;
 use Model\Link\LinkList as Link;
 use Model\Region\HalalHotel;
@@ -34,6 +35,13 @@ class Affilate extends Webservice {
         }
 
         $this->response->out();
+    }
+
+    public function excel(){
+        $data = $this->build(Model::whereRaw('1 = 1'))->orderBy('id','DESC')->get()->toArray();
+        $excel = new Excel();
+        $excel->data = $data;
+        $excel->excel();
     }
     
         
