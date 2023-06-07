@@ -3,6 +3,7 @@
 namespace Application\Api\Crm;
 
 use Core\Base\Webservice;
+use Helper\Excel;
 use Model\Customer\Customer as Model;
 
 class Customer extends Webservice {
@@ -15,7 +16,7 @@ class Customer extends Webservice {
         
          try{
              
-            $model = $this->build(Model::whereRaw('1 = 1'));
+            $model = Model::whereRaw('1 = 1');
             $model = $this->filter($model); 
  
             $pagination = [
@@ -37,7 +38,16 @@ class Customer extends Webservice {
 
         $this->response->out();
     }
-    
+
+    public function excel(){
+        $model = Model::select('id','username','name','surname','phone','town','address','created_at')->whereRaw('1 = 1');
+        $model = $this->filterForExcel($model)->orderBy('id','DESC')->get()->toArray();
+        $excel = new Excel();
+        $excel->data = $model;
+        $excel->excel();
+    }
+
+
     public function store() {
         die();
         $data = \Helper\Input::json();
@@ -123,17 +133,16 @@ class Customer extends Webservice {
         private function filter($entity) {
 
         $params = $_GET;
-        
         if (!empty($params['username'])) {
-            $entity = $entity->where('username', 'LIKE', $params['username'] . '%');
+            $entity = $entity->where('username', 'LIKE', '%' . $params['username'] . '%');
         }
-        
+
         if (!empty($params['name'])) {
-            $entity = $entity->where('name', 'LIKE', $params['name'] . '%');
+            $entity = $entity->where('name', 'LIKE', '%' . $params['name'] . '%');
         }
 
         if (!empty($params['surname'])) {
-            $entity = $entity->where('surname', 'LIKE', $params['surname'] . '%');
+            $entity = $entity->where('surname', 'LIKE', '%' . $params['surname'] . '%');
         }
         
         // 2020-01-25 00:00:00
@@ -148,5 +157,31 @@ class Customer extends Webservice {
         }
 
         return $entity;
-    }  
+    }
+        private function filterForExcel($entity) {
+
+        $params = $_GET;
+        if (!empty($params['email'])) {
+            $entity = $entity->where('username', 'LIKE', '%' . $params['email'] . '%');
+        }
+
+        if (!empty($params['name'])) {
+            $entity = $entity->where('name', 'LIKE', '%' . $params['name'] . '%');
+        }
+
+        if (!empty($params['surname'])) {
+            $entity = $entity->where('surname', 'LIKE', '%' . $params['surname'] . '%');
+        }
+
+        if (!empty($params['created_min'])) {
+            $entity = $entity->where('created_at', '>=', $params['created_min']);
+        }
+        if (!empty($params['created_max'])) {
+            $entity = $entity->where('created_at', '<=', $params['created_max']);
+        }
+
+        return $entity;
+    }
+
+
 }
