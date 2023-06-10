@@ -1,7 +1,7 @@
 <?php
 
 namespace Helper;
-
+use Shuchkin\SimpleXLSXGen;
 class Excel
 {
     public $data;
@@ -23,17 +23,28 @@ class Excel
 
     public function excel()
     {
+        $arr = array();
         // return an Excel file data
         $flag = FALSE;
         foreach($this->data as $row) {
-            $this->cleanData($row);
+            //$this->cleanData($row);
             if(!$flag) {
                 // display field/column names as first row
-                echo implode("\t", array_keys($row)) . "\n";
+                $arrayKeys = array_keys($row);
+                $newArrayKeys = Array();
+                foreach ($arrayKeys as $rowTitle) {
+                    $rowTitle = "<b>$rowTitle</b>";
+                    array_push($newArrayKeys ,"<b>$rowTitle</b>");
+                }
+                array_push($arr,$newArrayKeys);
                 $flag = TRUE;
             }
-            echo implode("\t", array_values($row)) . "\n";
+            array_push($arr, array_values($row));
         }
+        //dd($arr);
+        $xlsx = SimpleXLSXGen::fromArray($arr)->setDefaultFontSize(12);
+        $xlsx_content = (string) $xlsx;
+        echo $xlsx_content;
         exit;
     }
 
@@ -46,17 +57,17 @@ class Excel
             $this->cleanData($row);
             if(!$flag) {
                 // display field/column names as first row
-                echo implode("\t", array_keys($row)) . "\n";
+                echo unpack("C*", implode("\t", array_keys($row)) . "\n");
                 $flag = TRUE;
             }
-            echo implode("\t", array_values($row)) . "\n";
+            echo unpack("C*", implode("\t", array_values($row)) . "\n");
         }
         exit;
     }
 
     private function set_headers($filename){
         header("Content-Disposition: attachment; filename=\"{$filename}\"");
-        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Type: application/vnd.ms-excel; charset=UTF-8");
     }
 
 }
