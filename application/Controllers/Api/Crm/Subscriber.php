@@ -16,8 +16,9 @@ class Subscriber extends Webservice {
         
          try{
              
-            $model = $this->build(Model::whereRaw('1 = 1'));
-            $pagination = [
+            $model = Model::whereRaw('1 = 1');
+             $model = $this->filter($model);
+             $pagination = [
                 'total' => $model->count(),
                 'page'  => \Helper\Input::get('page',1)
             ];
@@ -131,9 +132,48 @@ class Subscriber extends Webservice {
         $this->response->setStatus(true)->out();
     }
 
+
+    private function filter($entity) {
+
+        $params = $_GET;
+        if (!empty($params['email'])) {
+            $entity = $entity->where('email', 'LIKE', '%' . $params['email'] . '%');
+        }
+
+        if (!empty($params['language'])) {
+            $entity = $entity->where('language', 'LIKE', '%' . $params['language'] . '%');
+        }
+
+
+        if (!empty($params['created_at'])) {
+            if (!empty($params['created_at']['min'])) {
+                $entity = $entity->where('created_at', '>=', $params['created_at']['min']);
+            }
+            if (!empty($params['created_at']['max'])) {
+                $entity = $entity->where('created_at', '<=', $params['created_at']['max']);
+            }
+        }
+
+        return $entity;
+    }
+
     private function filterForExcel($entity) {
 
         $params = $_GET;
+        if (!empty($params['email'])) {
+            $entity = $entity->where('email', 'LIKE', '%' . $params['email'] . '%');
+        }
+
+        if (!empty($params['language'])) {
+            $entity = $entity->where('language', 'LIKE', '%' . $params['language'] . '%');
+        }
+
+        if (!empty($params['created_min'])) {
+            $entity = $entity->where('created_at', '>=', $params['created_min']);
+        }
+        if (!empty($params['created_max'])) {
+            $entity = $entity->where('created_at', '<=', $params['created_max']);
+        }
 
         return $entity;
     }

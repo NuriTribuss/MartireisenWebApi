@@ -131,7 +131,7 @@ class Customer extends Webservice {
         $this->response->setStatus(true)->out();
     }     
     
-        private function filter($entity) {
+    private function filter($entity) {
 
         $params = $_GET;
         if (!empty($params['username'])) {
