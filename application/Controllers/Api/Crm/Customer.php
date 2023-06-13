@@ -159,7 +159,7 @@ class Customer extends Webservice {
 
         return $entity;
     }
-        private function filterForExcel($entity) {
+    private function filterForExcel($entity) {
 
         $params = $_GET;
         if (!empty($params['email'])) {

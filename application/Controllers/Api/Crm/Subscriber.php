@@ -3,6 +3,7 @@
 namespace Application\Api\Crm;
 
 use Core\Base\Webservice;
+use Helper\Excel;
 use Model\Crm\Subscriber as Model;
 
 class Subscriber extends Webservice {
@@ -31,6 +32,14 @@ class Subscriber extends Webservice {
         }
 
         $this->response->out();
+    }
+
+    public function excel(){
+        $model = Model::select('id','language','email','created_at')->whereRaw('1 = 1');
+        $model = $this->filterForExcel($model)->orderBy('id','DESC')->get()->toArray();
+        $excel = new Excel();
+        $excel->data = $model;
+        $excel->excel();
     }
     
     public function store() {
@@ -120,5 +129,12 @@ class Subscriber extends Webservice {
         
         $record->delete();
         $this->response->setStatus(true)->out();
-    }     
+    }
+
+    private function filterForExcel($entity) {
+
+        $params = $_GET;
+
+        return $entity;
+    }
 }

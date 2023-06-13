@@ -19,10 +19,22 @@ class Booking extends Service {
         parent::__construct();
         $this->connector = new Connector();
     }
-    
+
+    private function wh_log($log_msg)
+    {
+        $log_filename = "log";
+        if (!file_exists($log_filename))
+        {
+            // create directory/folder uploads.
+            mkdir($log_filename, 0777, true);
+        }
+        $log_file_data = $log_filename.'/log_' . date('d-M-Y') . '.log';
+        // if you don't add `FILE_APPEND`, the file will be erased each time you add a log
+        file_put_contents($log_file_data, $log_msg . "\n", FILE_APPEND);
+    }
+
     public function create()
     {
-
         $data = $this->check();
         $create = $this->getBooking($data);
 
@@ -118,7 +130,7 @@ class Booking extends Service {
             }
             
         }else if($data['payment']['method'] == 3){
-            
+
             $saferpay = new \Helper\Payment\Saferpay();
             $return = $saferpay->checkout(floatval($booking->amount*100),$booking->code , $booking->ref);
 
@@ -131,7 +143,7 @@ class Booking extends Service {
                 $this->response->setData($return)->setStatus(true)->out();
             }
         }else{
-            $create  = $this->connector->generateBook($data);
+            $create  = $this->connector->createBooking($data);
             if(isset($create['error'])){
                 $this->response->setMessage(_lang('booking.unknown_error',true))->out();
             }
@@ -141,6 +153,12 @@ class Booking extends Service {
 
             $booking->api_code = $create['response']->trafficsBookingCode;
             $booking->save();
+
+//            try {
+//                $this->wh_log(json_encode($create));
+//            }catch (\Exception $ex){
+//
+//            }
 
             try{
                 $mail = new \Model\Mail\Customer();
