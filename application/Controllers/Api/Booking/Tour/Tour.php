@@ -31,7 +31,8 @@ class Tour extends Webservice
 
         try {
 
-            $model = $this->build(Model::whereRaw('1 = 1'));
+            $model = Model::whereRaw('1 = 1');
+            $model = $this->filter($model);
             $pagination = [
                 'total' => $model->count(),
                 'page' => \Helper\Input::get('page', 1)
@@ -376,40 +377,40 @@ class Tour extends Webservice
         $this->response->setStatus(true)->out();
     }
 
-    private function filter($entity)
-    {
-
-        $params = $_GET;
-
-        if (!empty($params['code'])) {
-            $entity = $entity->where('code', 'LIKE', $params['code'] . '%');
-        }
-
-        if (!empty($params['email'])) {
-            $entity = $entity->where('email', 'LIKE', $params['email'] . '%');
-        }
-
-        if (!empty($params['name'])) {
-            $entity = $entity->where('name', 'LIKE', $params['name'] . '%');
-        }
-
-        if (!empty($params['surname'])) {
-            $entity = $entity->where('surname', 'LIKE', $params['surname'] . '%');
-        }
-
-        // 2020-01-25 00:00:00
-
-        if (!empty($params['created_at'])) {
-            if (isset($params['created_at']['min'])) {
-                $entity = $entity->where('created_at', '>=', $params['created_at']['min']);
-            }
-            if (isset($params['created_at']['max'])) {
-                $entity = $entity->where('created_at', '<=', $params['created_at']['max']);
-            }
-        }
-
-        return $entity;
-    }
+//    private function filter($entity)
+//    {
+//
+//        $params = $_GET;
+//
+//        if (!empty($params['code'])) {
+//            $entity = $entity->where('code', 'LIKE', $params['code'] . '%');
+//        }
+//
+//        if (!empty($params['email'])) {
+//            $entity = $entity->where('email', 'LIKE', $params['email'] . '%');
+//        }
+//
+//        if (!empty($params['name'])) {
+//            $entity = $entity->where('name', 'LIKE', $params['name'] . '%');
+//        }
+//
+//        if (!empty($params['surname'])) {
+//            $entity = $entity->where('surname', 'LIKE', $params['surname'] . '%');
+//        }
+//
+//        // 2020-01-25 00:00:00
+//
+//        if (!empty($params['created_at'])) {
+//            if (isset($params['created_at']['min'])) {
+//                $entity = $entity->where('created_at', '>=', $params['created_at']['min']);
+//            }
+//            if (isset($params['created_at']['max'])) {
+//                $entity = $entity->where('created_at', '<=', $params['created_at']['max']);
+//            }
+//        }
+//
+//        return $entity;
+//    }
 
     // LANGUAGE
     public function getLanguageContent($id)
@@ -521,6 +522,32 @@ class Tour extends Webservice
         $image = new Video();
         $image->tourId = $tourId;
         $image->index($id, $method);
+    }
+
+    private function filter($entity)
+    {
+
+        $params = $_GET;
+
+//        if (!empty($params['name'])) {
+//            $entity = $entity->whereHas('translate', function ($q) use ($params) {
+//                $q->where('name', 'LIKE', '%' . $params['name'] . '%');
+//            });
+//        }
+
+//        if (!empty($params['name'])) {
+//            $entity = $entity->where('translate.name', 'LIKE', '%' . $params['name'] . '%');
+//        }
+
+        if (!empty($params['departure_place'])) {
+            $entity = $entity->where('departure_place', 'LIKE', '%' . $params['departure_place'] . '%');
+        }
+
+        if (!empty($params['destination'])) {
+            $entity = $entity->where('destination', 'LIKE', '%' . $params['destination'] . '%');
+        }
+
+        return $entity;
     }
 
 }
