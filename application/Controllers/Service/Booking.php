@@ -614,12 +614,13 @@ class Booking extends Service{
                 $record->save();
                 
                 \Core\Session\Session::clear('payment_transaction');
-                
+
+                // In case of successful payment, an email with the title of successful payment will be sent to the admin.
                 try{
                     $mail = new \Model\Mail\Customer();
-                    $mail->sendBookingRequested($apiData['personal']['email'], $record->toArray());
+                    $mail->sendBookingSuccessfulPayment($record->toArray());
                 }catch(\Exception $e){
-                    
+
                 }
                // /booking/complete?booking=844
                  \Core\Http\Redirect::go('/booking/complete');

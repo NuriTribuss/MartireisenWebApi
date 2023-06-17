@@ -129,6 +129,49 @@ class Customer extends Message{
         
         return $send;
     }
+
+
+    public function sendBookingSuccessfulPayment($booking) {
+
+        $section = $this->lang->load(['MAIL_CUSTOMER_BOOKING'],'mail');
+        $section2 = $this->lang->load(['GENERAL'],'web');
+
+        $this->addLangVars($section);
+        $this->addLangVars($section2);
+
+        $languages = $this->getLangVars();
+        // var_dump($languages);
+
+        $bookingView = new \Model\BookingDetailView();
+        $params      = $bookingView->get($booking);
+        $params['language'] = $languages;
+        $params = array_merge($params, $this->getCommonParams());
+
+
+        $template    = new \Core\Template\Template();
+        $arg         = \Helper\Setting::get('booking-requested');
+        if($booking['source'] == 'Tour'){
+            $arg  = \Helper\Setting::get('booking-requested-tour');
+        }
+        $content     = $template->loadStr($arg, $params );
+
+
+        $message = array(
+            'subject' => 'Successful Payment #'.$params['code'],
+            'mail'    => '',
+            'body'    => $content
+        );
+
+        if($booking['source'] == 'Tour'){
+            $message['mail'] = ['kb@martireisen.at','osman@martireisen.at','mercelnet@gmail.com'];
+        }else{
+            $message['mail'] = ['web@tribus-business.at','mercelnet@gmail.com'];
+        }
+
+        $send = $this->send($message);
+
+        return $send;
+    }
     
     public function sendBookingRequestedTest($booking) {
         

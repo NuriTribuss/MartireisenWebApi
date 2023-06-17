@@ -154,20 +154,24 @@ class Booking extends Service {
             $booking->api_code = $create['response']->trafficsBookingCode;
             $booking->save();
 
+
+            //log traffics response and request
 //            try {
 //                $this->wh_log(json_encode($create));
 //            }catch (\Exception $ex){
 //
 //            }
-
-            try{
-                $mail = new \Model\Mail\Customer();
-                $mail->sendBookingRequested($data['personal']['email'], $booking->toArray());
-            }catch(\Exception $e){
-                
-            }
-            
         }
+
+
+        try{
+            $mail = new \Model\Mail\Customer();
+            $mail->sendBookingRequested($data['personal']['email'], $booking->toArray());
+        }catch(\Exception $e){
+
+        }
+            
+
         
         $this->response->setData($booking->toArray())->setStatus(true)->out();
     }
