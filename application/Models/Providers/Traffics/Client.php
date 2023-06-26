@@ -279,7 +279,6 @@ class Client {
                 "type"          => "H",
                 "firstname"     => $traveller['name'],
                 "lastname"      => $traveller['surname'],
-                "nationality"   => "de",
                 "identity"  => [
                   "document"        => "PASS",
                   "dateOfIssue"     => "2020-01-01",
@@ -294,7 +293,6 @@ class Client {
                 "type"          => "K",
                 "firstname"     => $traveller['name'],
                 "lastname"      => $traveller['surname'],
-                "nationality"   => "de",
                 "identity"  => [
                   "document"        => "PASS",
                   "dateOfIssue"     => "2020-01-01",
