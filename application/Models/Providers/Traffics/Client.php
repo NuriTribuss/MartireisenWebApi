@@ -282,8 +282,7 @@ class Client {
                 "identity"  => [
                   "document"        => "PASS",
                   "dateOfIssue"     => "2020-01-01",
-                  "dateOfValidity"  => "2025-12-31",
-                  "countryOfIssue"  => "de"
+                  "dateOfValidity"  => "2025-12-31"
                 ]
             ]);
         }
@@ -296,8 +295,7 @@ class Client {
                 "identity"  => [
                   "document"        => "PASS",
                   "dateOfIssue"     => "2020-01-01",
-                  "dateOfValidity"  => "2025-12-31",
-                  "countryOfIssue"  => "de"
+                  "dateOfValidity"  => "2025-12-31"
                 ]
             ]);
         }
