@@ -238,6 +238,8 @@ class Zone extends Webservice {
                $parent =  \Model\Region\Country::where('id',$page->code)->first();
             }else if($page->type == 'state') {
                $parent = \Model\Region\State::where('id',$page->code)->first();
+            }else if($page->type == 'city') {
+                $parent = \Model\Region\City::where('id',$page->code)->first();
             }
         
             $this->linkModel->setType('landing_'.$page->type);

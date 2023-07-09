@@ -18,10 +18,10 @@ class Meta extends Webservice {
         $link    = new LinkList();
         $record  = $link->findByValue($value);
         if($record['type'] == 'affilate') {
-		parse_str(str_replace('/search/hotel-offers?','',$record['redirect_value']), $arr);
-		$record['params'] = json_encode($arr);
-		$record['hotel'] = $arr['destination'];
-	}
+            parse_str(str_replace('/search/hotel-offers?','',$record['redirect_value']), $arr);
+            $record['params'] = json_encode($arr);
+            $record['hotel'] = $arr['destination'];
+        }
         $this->response->setData($record)->setStatus(true)->out();
     }
     
