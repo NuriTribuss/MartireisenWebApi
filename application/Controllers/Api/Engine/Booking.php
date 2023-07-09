@@ -156,11 +156,11 @@ class Booking extends Service {
 
 
             //log traffics response and request
-            try {
-                $this->wh_log(json_encode($create));
-            }catch (\Exception $ex){
-
-            }
+//            try {
+//                $this->wh_log(json_encode($create));
+//            }catch (\Exception $ex){
+//
+//            }
         }
 
 
