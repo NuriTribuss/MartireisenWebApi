@@ -16,21 +16,28 @@ class Sofort {
     }
     
     public function checkout($amount,$bookingCode,$ref) {
-        
         $return = array(
             'status' => false,
             'data'   => '',
             'url'    => ''
         );
-        
-        $url = 'https://www.martireisen.at';
+
+        $url = 'https://webapi.martireisen.at';
+        //for test
+        //$url = 'http://localhost/martireisenWebApi';
+
+
+        $martiUrl = 'https://www.martireisen.at';
+        //for test
+        //$martiUrl = 'http://localhost:3000';
+
 
         $Sofortueberweisung = new Sofortueberweisung($this->configKey);
         $Sofortueberweisung->setAmount($amount);
         $Sofortueberweisung->setCurrencyCode('EUR');
         $Sofortueberweisung->setReason($bookingCode, 'Verwendungszweck');
-        $Sofortueberweisung->setSuccessUrl($url.'/service/booking/process', true); 
-        $Sofortueberweisung->setAbortUrl($url.'/booking/checkout?code='.$ref);
+        $Sofortueberweisung->setSuccessUrl($url.'/service/booking/process?code='.$bookingCode, true);
+        $Sofortueberweisung->setAbortUrl($martiUrl.'/booking/checkout?code='.$ref);
         
         $Sofortueberweisung->sendRequest();
         
