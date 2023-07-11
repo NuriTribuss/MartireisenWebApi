@@ -14,10 +14,10 @@ class Saferpay {
     public $Pass          = "";
     
     // public test account 
-    public $testUsername  = "API_401860_80003225";
-    public $testPass      = "C-y*bv8346Ze5-T8";
-    public $testCustomer  = "401860";
-    public $testTerminal  = "17795278";
+    public $testUsername  = "API_265940_69296188";
+    public $testPass      = "JsonApiPwd1_rV)2E8C2W4up";
+    public $testCustomer  = "265940";
+    public $testTerminal  = "17755631";
     public $isTest        = 1;
     
     public function __construct() {
@@ -148,8 +148,10 @@ class Saferpay {
         $url = 'https://www.martireisen.at';
 
         $arr = array(
-            "Success" =>  'https://webapi.martireisen.at/service/booking/process?code='.$code,
-            "Fail"    =>  $url.'/booking/checkout?code='.$ref
+            //"Success" =>  'https://webapi.martireisen.at/service/booking/process?code='.$code,
+            "Success" =>  'http://localhost/MartireisenWebApi/service/booking/process?code='.$code,
+            "Fail" =>  'http://localhost/MartireisenWebApi/booking/checkout?code='.$ref
+            //"Fail"    =>  $url.'/booking/checkout?code='.$ref
         );
         
         return $arr;

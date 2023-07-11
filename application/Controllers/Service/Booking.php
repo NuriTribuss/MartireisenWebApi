@@ -529,8 +529,7 @@ class Booking extends Service{
     
     
     public function process() {
-        
-        $code = Input::get('code');
+        $code = \Helper\Input::get('code');
         $record      = BookingObj::where('code',$code)->first();
         $transaction = $record->transaction_id;
         if($record != NULL && $record->payment_method > 1){
@@ -623,12 +622,17 @@ class Booking extends Service{
 
                 }
                // /booking/complete?booking=844
-                 \Core\Http\Redirect::go('/booking/complete');
+                if($record->payment_received == 1){
+                    \Core\Http\Redirect::goToMarti('/booking/completePayment?booking='.$record->id);
+                }else{
+                    \Core\Http\Redirect::goToMarti('/booking/complete?booking='.$record->id);
+                }
+
             }else{
                 $record->status  =3;
                 $record->save();
                 ///booking/complete?booking=844
-                 \Core\Http\Redirect::go('/booking/failure');
+                 \Core\Http\Redirect::goToMarti('/booking/failure');
             }
         }else{
            die('Unavilable Request');
