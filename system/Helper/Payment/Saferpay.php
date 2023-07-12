@@ -148,10 +148,10 @@ class Saferpay {
         $url = 'https://www.martireisen.at';
 
         $arr = array(
-            //"Success" =>  'https://webapi.martireisen.at/service/booking/process?code='.$code,
-            "Success" =>  'http://localhost/MartireisenWebApi/service/booking/process?code='.$code,
-            "Fail" =>  'http://localhost/MartireisenWebApi/booking/checkout?code='.$ref
-            //"Fail"    =>  $url.'/booking/checkout?code='.$ref
+            "Success" =>  'https://webapi.martireisen.at/service/booking/process?code='.$code,
+            "Fail"    =>  $url.'/booking/checkout?code='.$ref
+            //Fail" =>  'http://localhost/MartireisenWebApi/booking/checkout?code='.$ref
+
         );
         
         return $arr;
