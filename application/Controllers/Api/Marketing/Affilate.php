@@ -145,89 +145,154 @@ class Affilate extends Webservice {
         return $link->save();
 
     }
-    
+
     public function makeRoute($param) {
-        
         if($param['travel_api'] == 'HalalBooking'){
             return $this->makeRouteHalal($param);
         }
         if($param['travel_api'] == 'Tour'){
             return $this->makeRouteTour($param);
         }
+
         $arr = array(
+            'destination' => $param['destination_name'],
             'sf' => $param['travel_type'],
             'adults' => $param['adult'],
-            'date' => array(
-                'start' => empty($param['date_start']) ? \Carbon\Carbon::now()->addDay(7)->format('Y-m-d') : $param['date_start'],
-                'end'   => empty($param['date_end'])   ? \Carbon\Carbon::now()->addMonth()->addDay(8)->format('Y-m-d') : $param['date_end'] 
-            ),
-            'departure' => array(
-                'code' => $param['departure_code']
-            ),
-            'destination' => array(
-                'name' => $param['destination_name'],
-                'code' => $param['destination_value'],
-                'type' => $param['destination_type'],
-            ),
-
+            'startdate' => empty($param['date_start']) ? \Carbon\Carbon::now()->addDay(7)->format('Y-m-d') : $param['date_start'],
+            'endDate'   => empty($param['date_end'])   ? \Carbon\Carbon::now()->addMonth()->addDay(8)->format('Y-m-d') : $param['date_end'],
+            'departure' => $param['departure_code'],
+            'destinationtype' => $param['destination_type'],
+            'destinationcode' => $param['destination_value'],
         );
-
-
         $end = strtotime($arr['date']['end']);
         $start = strtotime($arr['date']['start']);
         $datediff = $end - $start ;
         $arr['duration'] = intval(round($datediff / (60 * 60 * 24)));
-
-        
         if((int)$param['children'] > 0 ){
             $arr['children'] = [];
             for($i = 0 ; $i < $param['children']; $i++){
-                $arr['children'][] = [
-                    'jahre' => 6,
-                    'percent' => 35.29
-                ];
+                $arr['children'][] = [6];
             }
         }
-        
+
         $prefix = '';
-        
+
         switch($param['destination_type']){
             case "hotel":
-                $prefix = '/search/hotel-offers';
+                $prefix = '/search/hotels';
                 break;
-            
+
             case "state" :
                 $prefix = '/search/hotels';
                 break;
-            
-            default : 
+
+            default :
                 $prefix = 'search/region';
                 break;
         }
-        
         $link = $prefix.'?'.http_build_query($arr);
         return $link;
-    }
-    
-    public function makeRouteHalal($param) {
 
+    }
+
+    public function makeRouteHalal($param) {
         $arr = array(
-            'date' => array(
-                'start' => empty($param['date_start']) ? \Carbon\Carbon::now()->addDay(7)->format('Y-m-d') : $param['date_start'],
-                'end'   => empty($param['date_end'])   ? \Carbon\Carbon::now()->addMonth()->addDay(8)->format('Y-m-d') : $param['date_end']
-            ),
-            'destination' => array(
-                'name' => $param['destination_name'],
-                'code' => $param['destination_value'],
-                'type' => $param['destination_type'],
-            ),
+            'destination' => $param['destination_name'],
             'adults' => $param['adult'],
+            'startdate' => empty($param['date_start']) ? \Carbon\Carbon::now()->addDay(7)->format('Y-m-d') : $param['date_start'],
+            'endDate'   => empty($param['date_end'])   ? \Carbon\Carbon::now()->addMonth()->addDay(8)->format('Y-m-d') : $param['date_end'],
+            'destinationtype' => $param['destination_type'],
+            'destinationcode' => $param['destination_value'],
         );
-        
+
         $prefix = '/halal-booking/hotel-offers';
         $link = $prefix.'?'.http_build_query($arr);
         return $link;
     }
+
+
+//    public function makeRoute($param) {
+//
+//        if($param['travel_api'] == 'HalalBooking'){
+//            return $this->makeRouteHalal($param);
+//        }
+//        if($param['travel_api'] == 'Tour'){
+//            return $this->makeRouteTour($param);
+//        }
+//        $arr = array(
+//            'sf' => $param['travel_type'],
+//            'adults' => $param['adult'],
+//            'date' => array(
+//                'start' => empty($param['date_start']) ? \Carbon\Carbon::now()->addDay(7)->format('Y-m-d') : $param['date_start'],
+//                'end'   => empty($param['date_end'])   ? \Carbon\Carbon::now()->addMonth()->addDay(8)->format('Y-m-d') : $param['date_end']
+//            ),
+//            'departure' => array(
+//                'code' => $param['departure_code']
+//            ),
+//            'destination' => array(
+//                'name' => $param['destination_name'],
+//                'code' => $param['destination_value'],
+//                'type' => $param['destination_type'],
+//            ),
+//
+//        );
+//
+//
+//        $end = strtotime($arr['date']['end']);
+//        $start = strtotime($arr['date']['start']);
+//        $datediff = $end - $start ;
+//        $arr['duration'] = intval(round($datediff / (60 * 60 * 24)));
+//
+//
+//        if((int)$param['children'] > 0 ){
+//            $arr['children'] = [];
+//            for($i = 0 ; $i < $param['children']; $i++){
+//                $arr['children'][] = [
+//                    'jahre' => 6,
+//                    'percent' => 35.29
+//                ];
+//            }
+//        }
+//
+//        $prefix = '';
+//
+//        switch($param['destination_type']){
+//            case "hotel":
+//                $prefix = '/search/hotel-offers';
+//                break;
+//
+//            case "state" :
+//                $prefix = '/search/hotels';
+//                break;
+//
+//            default :
+//                $prefix = 'search/region';
+//                break;
+//        }
+//
+//        $link = $prefix.'?'.http_build_query($arr);
+//        return $link;
+//    }
+    
+//    public function makeRouteHalal($param) {
+//
+//        $arr = array(
+//            'date' => array(
+//                'start' => empty($param['date_start']) ? \Carbon\Carbon::now()->addDay(7)->format('Y-m-d') : $param['date_start'],
+//                'end'   => empty($param['date_end'])   ? \Carbon\Carbon::now()->addMonth()->addDay(8)->format('Y-m-d') : $param['date_end']
+//            ),
+//            'destination' => array(
+//                'name' => $param['destination_name'],
+//                'code' => $param['destination_value'],
+//                'type' => $param['destination_type'],
+//            ),
+//            'adults' => $param['adult'],
+//        );
+//
+//        $prefix = '/halal-booking/hotel-offers';
+//        $link = $prefix.'?'.http_build_query($arr);
+//        return $link;
+//    }
     public function makeRouteTour($param){
         $selectedTour = Tour::find($param['destination_value']);
         $arr = array(
